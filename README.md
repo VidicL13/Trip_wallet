@@ -28,7 +28,19 @@ Za bazo podatkov uporabljava PostgreSQL, glede na naravo aplikacije pa začetnih
 
 Dogovorita se, da Tine poišče in plača letalske karte, Jošt pa prenočišče.
 
+|tip|znesek|placal|udelezeni|oznaka|id_transakcije|prejemnik|
+|---|---|---|---|---|---|---|
+|nakup|550|ia3bb96g|ia3bb96g|letalske karte|1002345|eDreams|
+|nakup|550|ia3bb96g|j3k4aa9k|letalske karte|1002345|eDreams|
+|nakup|250|j3k4aa9k|j3k4aa9k|hotel|1002346|GreekHotels|
+|nakup|250|j3k4aa9k|ia3bb96g|hotel|1002346|GreekHotels|
+
 Ko prideta v Atene, naročila taksi od letališča do hotela in po napornem letu si najprej malo odpočijeta. Potem se odločita, da si bosta zvečer v prijetni spomladni noči ogledala Atensko Akropolo in Dionizovo gledališče. Za večerjo se odločita, da bosta poskusila tradicionalno grško hrano in seveda lokalno grško pivo.
+
+|tip|znesek|placal|udelezeni|oznaka|id_transakcije|prejemnik|
+|---|---|---|---|---|---|---|
+|nakup|30|ia3bb96g|ia3bb96g|taksi|1002347|taksist|
+|nakup|30|ia3bb96g|j3k4aa9k|taksi|1002347|taksist|
 
 V soboto srečata še eno skupino Slovencev, med katerimi je en dober Joštov prijatelj. Vsi skupaj preživijo dan, si ogledajo živalski vrt, potem pa se prijatelj pridruži Tinetu in Joštu in skupaj potujejo naprej, saj so ugotovili, da se z istim letalom vračajo domov.
 
