@@ -17,3 +17,19 @@ Za bazo podatkov uporabljava PostgreSQL, glede na naravo aplikacije pa začetnih
 
 ## 
 
+## Vzorčni izlet
+
+2 prijatelja, Tine in Jošt se odločita, da bosta odšla na potovanje v Grčijo. Ker se zavedata stvarnosti in vesta, da je težko vedno imeti dovolj drobiža, da vsak prispeva točno polovico, se odločita, da bosta uporabila Potovalno denarnico, ki bo namesto njiju preračunala, da si bosta pravično razdelila stroške potovanja. Zato se najprej oba registrirata.
+
+|ime|priimek|rojstnidan|telefon|email|username|userid|
+|---|---|---|---|---|---|---|
+|Tine|Kovačič|3/3/1996|"031211010"|tince@gmail.com|Tinče|ia3bb96g|
+|Jošt|Dolenc|2/1/1998|"051245963"|jost33@neki.si|jostD|j3k4aa9k|
+
+Dogovorita se, da Tine poišče in plača letalske karte, Jošt pa prenočišče.
+
+Ko prideta v Atene, naročila taksi od letališča do hotela in po napornem letu si najprej malo odpočijeta. Potem se odločita, da si bosta zvečer v prijetni spomladni noči ogledala Atensko Akropolo in Dionizovo gledališče. Za večerjo se odločita, da bosta poskusila tradicionalno grško hrano in seveda lokalno grško pivo.
+
+V soboto srečata še eno skupino Slovencev, med katerimi je en dober Joštov prijatelj. Vsi skupaj preživijo dan, si ogledajo živalski vrt, potem pa se prijatelj pridruži Tinetu in Joštu in skupaj potujejo naprej, saj so ugotovili, da se z istim letalom vračajo domov.
+
+Nepozaben izlet v Grčijo vsem ostane v lepem spominu.
