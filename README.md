@@ -42,6 +42,14 @@ Ko prideta v Atene, naročila taksi od letališča do hotela in po napornem letu
 |nakup|30|ia3bb96g|ia3bb96g|taksi|1002347|taksist|
 |nakup|30|ia3bb96g|j3k4aa9k|taksi|1002347|taksist|
 
-V soboto srečata še eno skupino Slovencev, med katerimi je en dober Joštov prijatelj. Vsi skupaj preživijo dan, si ogledajo živalski vrt, potem pa se prijatelj pridruži Tinetu in Joštu in skupaj potujejo naprej, saj so ugotovili, da se z istim letalom vračajo domov.
+V soboto srečata še eno skupino Slovencev, med katerimi je en dober Joštov prijatelj po imenu Andrej. Vsi skupaj preživijo dan, si ogledajo živalski vrt, potem pa se prijatelj pridruži Tinetu in Joštu in skupaj potujejo naprej, saj so ugotovili, da se z istim letalom vračajo domov.
 
-Nepozaben izlet v Grčijo vsem ostane v lepem spominu.
+Naslednji dan Jošta okradejo. Zato se Tine in Andrej odločita, da bosta prijatelju pomagala in sicer tako, da bojo skupaj na ulici peli in igrali na kitaro, ki so si jo izposodili pri naključnih stanovalcih v Atenah. Celo popoldne so igrali in zaslužili 73,50€, Tine in Andrej se odločita, da ves denar pustita Joštu. 
+
+|tip|znesek|placal|udelezeni|oznaka|id_transakcije|prejemnik|
+|---|---|---|---|---|---|---|
+|donacija|73,50|donator|ia3bb96g|igranje kitare|1002348|j3k4aa9k|
+|donacija|73,50|donator|j3k4aa9k|igranje kitare|1002348|j3k4aa9k|
+|donacija|73,50|donator|andrej|igranje kitare|1002348|j3k4aa9k|
+
+Kljub še nekaterim drugim zapletom se izlet dobro konča, vsi srečno prispejo domov. Nepozaben izlet v Grčijo vsem ostane v lepem spominu.
