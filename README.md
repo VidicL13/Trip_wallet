@@ -15,7 +15,9 @@ Potovalna denarnica je spletna aplikacija, ki uporabnikom omogoča pravično del
 
 Za bazo podatkov uporabljava PostgreSQL, glede na naravo aplikacije pa začetnih podatkov ni, saj se kreirajo sproti.
 
-## 
+## ER Diagram
+
+![ER diagram](Diagram1.png)
 
 ## Vzorčni izlet
 
