@@ -1,0 +1,36 @@
+{% extends 'webapp/head.html' %}
+
+{% block content %}
+  <div class="container-fluid chosetype">
+        <h1 class="title text-uppercase text-center">Chose type of transaction</h1>
+        <div class="row" margin-top="150px">
+            <div class="col-lg-4 offset-lg-0">
+                <div class="forma">
+                    <a href="transactionReceipt.html" id="receipt_link" class="link">
+                        <h1 class="text-uppercase text-center">receipt</h1><i class="material-icons illustration text-center" style="color:inherit">local_grocery_store</i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-0">
+                <div class="forma">
+                    <a href="transactionInternal.html" id="internal_link" class="link">
+                        <h1 class="text-uppercase text-center">internal</h1><i class="material-icons illustration text-center" style="color:inherit">people</i></a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="forma">
+                    <a href="transactionDonation.html" id="donation_link" class="link">
+                        <h1 class="text-uppercase text-center">donation</h1><i class="fa fa-bank illustration text-center" style="color:inherit"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:30px">
+            <div class="col-lg-4 offset-lg-4">
+                <div class="forma">
+                    <a href="#" id="back_link" class="link">
+                        <h1 class="text-uppercase text-center" style="color:inherit">back</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

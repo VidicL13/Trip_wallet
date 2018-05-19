@@ -1,39 +1,28 @@
-<!DOCTYPE html>
-<html>
+{% extends "webapp/head.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load staticfiles %}
-    <title>Log in</title>
-    <link rel="stylesheet" href="{% static 'webapp/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'webapp/fonts/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'webapp/css/styles.css' %}">
-</head>
-
-<body>
-    <div class="login">
-        <h1 class="text-center text-uppercase title">Trip wallet</h1>
-        <form method="post">
-            <h2 class="sr-only">Heading</h2>
-            <div class="illustration">
-              <i class="icon ion-ios-locked-outline illustration"></i>
-            </div>
-            <div class="form-group">
-              <input class="form-control" type="email" id="email" placeholder="email">
-            </div>
-            <div class="form-group">
-              <input class="form-control" type="password" id="password" placeholder="password">
-            </div>
-            <div class="form-group">
-              <button class="btn btn-primary btn-block" type="submit" id="login">Log in</button>
-            </div>
-            <a href="#" id="forgot" class="link">Forgot your password?</a>
-            <a href="../signin/" id="signin" class="link">Sign in</a>
-          </form>
-    </div>
-    <script src="{% static 'webapp/js/jquery.min.js' %}"></script>
-    <script src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
-</body>
-
-</html>
+{% block content %}
+  <div class="container-fluid login">
+      <h1 class="text-center text-uppercase title">Trip wallet</h1>
+      <div class="row">
+          <div class="col-lg-4 offset-lg-4">
+              <div class="forma">
+                  <h2 class="sr-only">Heading</h2>
+                  <div class="illustration"><i class="icon ion-ios-locked-outline illustration"></i></div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col"><input type="email" id="email" placeholder="email" autofocus /></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col"><input type="password" id="password" placeholder="password" required /></div>
+                    </div>
+                  </div>
+                  <div class="form-group"><button class="btn btn-primary btn-block buton" type="submit" id="login_button" herf="../xxx">Log in</button></div>
+                  <a href="forgot" id="forgot_link" class="link">Forgot your password?</a>
+                  <a href="../signin" id="signin_link" class="link">Sign in</a>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}

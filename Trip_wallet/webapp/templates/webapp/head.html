@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip wallet</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'webapp/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'webapp/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'webapp/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'webapp/fonts/material-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'webapp/fonts/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'webapp/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'webapp/css/chosen.min.css' %}">
+
+</head>
+
+<body>
+    {% block content %}
+    {% endblock %}
+    <script src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'webapp/js/chosen.jquery.min.js' %}"></script>
+    <script src="{% static 'webapp/js/script.min.js' %}"></script>
+    <script src="{% static 'webapp/js/jquery-3.3.1.min.js' %}"></script>
+</body>
+
+</html>

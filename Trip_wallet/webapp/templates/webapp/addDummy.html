@@ -1,0 +1,27 @@
+{% extends 'webapp/head.html' %}
+
+{% block content %}
+  <div class="container-fluid addDummy">
+        <h1 class="title text-uppercase text-center">add new dummy user</h1>
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4">
+                <div class="forma" style="margin-top:15vh; padding-bottom:5px;">
+                    <div class="form-group">
+                        <h4>Basic info</h4>
+                        <div class="row">
+                            <div class="col-lg-12"><input type="text" id="nickname" placeholder="Nickname" required=""></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-12 offset-lg-0"><button class="btn btn-primary btn-block buton" type="submit" id="add_button">Add traveler</button></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2"><a href="chosetype.html" id="back_link" class="link" margin-top="15px">Back</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

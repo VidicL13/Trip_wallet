@@ -1,18 +1,28 @@
-<!DOCTYPE html>
-<html>
+{% extends 'webapp/head.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip wallet</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-
-<body>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+{% block content %}
+  <div class="container-fluid main">
+        <h1 class="text-center text-uppercase title">my trips</h1>
+        <div class="row" id="table_trips">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="box">
+                    <a href="#" class="link">
+                        <h2>Heading 1</h2>
+                        <p>Paragraph</p>
+                    </a>
+                </div>
+                <div class="box">
+                    <a href="#" class="link">
+                        <h2>Heading 2</h2>
+                        <p>Paragraph</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="add"><a href="newtrip.html" id="addTrip_link" class="link"><i class="icon ion-plus-circled"></i></a></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

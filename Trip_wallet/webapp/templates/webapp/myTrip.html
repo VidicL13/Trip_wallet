@@ -1,0 +1,60 @@
+{% extends 'webapp/head.html' %}
+
+{% block content %}
+  <div class="container-fluid myTrip">
+        <h1 class="title" style="color:red">Trip name</h1>
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="forma">
+                    <div class="form-group">
+                        <h1>My buddies</h1>
+                        <div id="table_buddies" class="tabela">
+                            <a href="#" class="link">
+                                <div class="tabela_row">
+                                    <div class="row">
+                                        <div class="col-lg-1 offset-lg-1"><i class="fa fa-user"></i></div>
+                                        <div class="col-lg-4">
+                                            <h2>Janez Novak</h2>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <h1>+ 300.00 €</h1>
+                                        </div>
+                                        <div class="col-lg-1"><i class="icon ion-arrow-up-c illustration" style="color:inherit; font-size:inherit;"></i></div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="link">
+                                <div class="tabela_row">
+                                    <div class="row">
+                                        <div class="col-lg-1 offset-lg-1"><i class="fa fa-user"></i></div>
+                                        <div class="col-lg-4">
+                                            <h2>Luka Vidic</h2>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <h1>- 47.85 €</h1>
+                                        </div>
+                                        <div class="col-lg-1"><i class="icon ion-arrow-down-c illustration" style="color:inherit; font-size:inherit;"></i></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:30px;margin-bottom:30px;">
+            <div class="col-lg-5 offset-lg-1">
+                <div class="forma">
+                    <a href="choseTypeTransaction.html" id="addTransaction_link" class="link">
+                        <h1 class="text-uppercase text-center">add transaction</h1><i class="fa fa-money illustration text-center" style="color:inherit"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-0">
+                <div class="forma">
+                    <a href="signin.html" class="link">
+                        <h1 class="text-uppercase text-center">my transactions</h1><i class="icon-wallet illustration text-center" style="color:inherit"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

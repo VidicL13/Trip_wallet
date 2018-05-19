@@ -1,117 +1,168 @@
-.login, .signin {
-  height:1000px;
-  background:#475d62 url(../../webapp/img/chen-hu-523359-unsplash.jpg);
+
+
+
+.form-check,.link,.link:hover{
+  text-decoration:none;
+}
+
+.addDonator,.addDummy,.chosetype,.forgot,.login,.main,.myTrip,.newtrip,.signin,.transaction{
+  background:url(../../webapp/img/Background.jpg) #475d62;
   background-size:cover;
   position:relative;
+  min-height:110vh;
 }
 
-.login form {
-  max-width:340px;
+h5,h6{
+  color:#a0a0a0
 }
 
-.signin form {
-  transform:translate(-50%, -60%);
-}
-
-form {
-  width:70%;
-  background-color:rgba(0,0,0,0.66);
+.forma{
+  background-color:rgba(0,0,0,.66);
   padding:40px;
   border-radius:4px;
-  transform:translate(-50%, -60%);
-  position:absolute;
-  top:50%;
-  left:50%;
   color:#fff;
-  box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+  box-shadow:3px 3px 4px rgba(0,0,0,.2);
+  margin-bottom:30px
 }
 
-form .form-control {
-  background:none;
+.forma .illustration{
+  font-size:100px;
+  color:rgba(160,160,160,.8);
+  text-align:center;
+  padding:15px 0 20px
+}
+
+.forma input,.forma textarea{
+  background:0 0;
+  display: block;
+  padding:4px;
+  width:inherit;
+  border:none;
+  margin:4px;
+  border-radius:5px;
+  box-shadow:none;
+  outline:0;
+  color:inherit
+}
+
+.forma input:active,.forma input:focus,.forma textarea:active,.forma textarea:focus{
+  background:#fff;
+  border:none;
+  border-radius:0;
+  color:#323232;
+  box-shadow:2px 2px 2px rgba(70,116,185,.8)
+}
+
+form .form-control{
+  background:0 0;
   border:none;
   border-bottom:1px solid #434a52;
   border-radius:0;
   box-shadow:none;
-  outline:none;
-  color:inherit;
+  outline:0;
+  color:inherit
 }
 
-form .btn-primary {
-  background:rgba(160,160,160,0.3);
+.buton.btn-primary{
+  background:rgba(160,160,160,.3);
+  display:block;
   border:none;
   border-radius:4px;
   padding:11px;
   box-shadow:none;
-  margin-top:26px;
+  margin:5px;
   text-shadow:none;
-  outline:none;
+  outline:0
 }
 
-form .btn-primary:hover, form .btn-primary:active {
-  background:rgba(160,160,160,0.80);
-  outline:none;
+.buton.btn-primary:hover{
+  background:rgba(160,160,160,.8);
+  outline:0
 }
 
-form .link {
+.btn.btn-primary.buton:active{
+  background:#4674b9
+}
+
+.link{
   display:block;
   text-align:center;
   font-size:12px;
-  color:#6f7a85;
-  opacity:0.9;
-  text-decoration:none;
+  color:#a0a0a0;
+  opacity:.9
 }
 
-form .link:hover, form .link:active {
-  opacity:1;
-  text-decoration:none;
-}
-
-form .illustration {
-  font-size:100px;
-  color:rgba(160,160,160,0.8);
-  text-align:center;
-  padding:15px 0px 20px;
-}
-
-.title.text-uppercase.text-center {
-  color:rgba(80,80,80,0.6);
-  font-size:120px;
-  margin:0px 0px 8px;
-  padding:12px;
-}
-
-h5, h6 {
-  color:rgb(160, 160, 160);
-}
-
-.form-row {
-  padding:5px;
-}
-
-.text-center {
-  color:rgba(160, 160, 160, 0.9);
-  font-size:75px;
+.box .link{
   padding:15px;
+  text-align:left
 }
 
-.form-check {
+.form-row,.title{
+  text-align:center
+}
+
+.add .link{
+  padding:10px;
+  font-size:50px
+}
+
+.link:hover{
+  color:#e6e6e6;
+  opacity:1
+}
+
+.link:active{
+  color:#4674b9
+}
+
+.title{
+  color:rgba(160,160,160,.9);
+  font-size:6vw;
+  padding:15px;
+  text-transform:uppercase
+}
+.login .title{
+  color:rgba(80,80,80,.6);
+  font-size:10vw;
+  margin:0 0 8px;
+  padding:12px
+}
+.form-row{
+  padding:5px
+}
+.form-check{
   display:block;
   text-align:left;
   color:#6f7a85;
-  opacity:0.9;
-  text-decoration:none;
+  opacity:.9
 }
-
-.fileinput {
-  color:rgba(160,160,160,0.6);
-  border:none;
+.add,.box{
+  text-align:left;
+  color:#a0a0a0;
+  background-color:rgba(0,0,0,.6);
   border-radius:4px;
-  box-shadow:none;
-  text-shadow:none;
-  outline:none;
+  position:relative;
+  margin:15px;
+  box-shadow:3px 3px 4px rgba(0,0,0,.2)
 }
-
-.fileinput button:hover, .fileinput button:active {
-  background:rgba(160,160,0,0.80);
-  outline:none;
+.add:hover,.box:hover,.chosetype .forma:hover{
+  background-color:rgba(0,0,0,.8)
+}
+.add:active,.box:active,.chosetype .forma:active{
+  transform:scale(.99);
+  box-shadow:2px 2px 3px rgba(70,116,185,.95)
+}
+.tabela .link .row{
+  font-size:2.5rem
+}
+.tabela_row:hover{
+  box-shadow:0 0 5px 7px rgba(70,116,185,.2)
+}
+@media (max-width:1000px){
+  .tabela .link .row{
+    text-align:center
+  }
+}
+.chosen{
+  background-color: inherit;
 }

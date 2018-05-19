@@ -1,0 +1,36 @@
+{% extends 'webapp/head.html' %}
+
+{% block content %}
+  <div class="container-fluid chosetype">
+        <h1 class="title text-uppercase text-center">Chose type of user</h1>
+        <div class="row" margin-top="150px">
+            <div class="col-lg-4 offset-lg-0">
+                <div class="forma">
+                    <a href="addUser.html" id="realUser_link" class="link">
+                        <h1 class="text-uppercase text-center">Real user</h1><i class="fa fa-user illustration text-center" style="color:inherit"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="forma">
+                    <a href="addDummy.html" id="fakeUser_link" class="link">
+                        <h1 class="text-uppercase text-center">Fake user</h1><i class="fa fa-user-secret illustration text-center" style="color:inherit"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-0">
+                <div class="forma">
+                    <a href="addDonator.html" id="donator_link" class="link">
+                        <h1 class="text-uppercase text-center">Donator</h1><i class="fa fa-bank illustration text-center" style="color:inherit"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:30px">
+            <div class="col-lg-4 offset-lg-4">
+                <div class="forma">
+                    <a href="#" id="back_link" class="link">
+                        <h1 class="text-uppercase text-center" style="color:inherit">back</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
