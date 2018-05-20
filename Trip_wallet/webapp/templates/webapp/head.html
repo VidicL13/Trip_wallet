@@ -17,12 +17,13 @@
 </head>
 
 <body>
+    <script src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'webapp/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'webapp/js/script.min.js' %}"></script>
+    <script src="{% static 'webapp/js/chosen.jquery.min.js' %}"></script>
     {% block content %}
     {% endblock %}
-    <script src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'webapp/js/chosen.jquery.min.js' %}"></script>
-    <script src="{% static 'webapp/js/script.min.js' %}"></script>
-    <script src="{% static 'webapp/js/jquery-3.3.1.min.js' %}"></script>
+
 </body>
 
 </html>

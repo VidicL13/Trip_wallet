@@ -19,7 +19,7 @@
                                 <h1>Tukaj bo list donatorjev</h1>
                             </div>
                             <div class="col-lg-3">
-                                <a href="addDonator.html" id="addDonator_link" class="link">
+                                <a href="{{ request.path }}/addDonator" id="addDonator_link" class="link">
                                     <h5 class="text-center" style="color:inherit">Add new donator</h5><i class="icon ion-plus-circled" style="font-size:50px"></i></a>
                             </div>
                         </div>
@@ -29,14 +29,14 @@
                             <div class="col-lg-9">
                                 <h1>Tukaj bo list prejemnikov</h1>
                             </div>
-                            <div class="col-lg-3"><button class="btn btn-primary buton" type="button" onclick=show()>
-	<a class="link" id='devide_link'>
-		<h5 style="color:inherit">Devide</h5>
-		<i class="fa fa-balance-scale illustration"
-		   style="font-size:50px;color:inherit;" ></i>
-	</a>
-</button>
-</div>
+                            <div class="col-lg-3">
+                                <button class="btn btn-primary buton" type="button" onclick=show()>
+                                    <a class="link" id='devide_link'>
+                                        <h5 style="color:inherit">Devide</h5>
+                                        <i class="fa fa-balance-scale illustration" style="font-size:50px;color:inherit;" ></i>
+                                    </a>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,7 +73,10 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-lg-4 offset-lg-4"><button class="btn btn-primary btn-block buton" type="submit" id="done_button">Done</button><a href="myTrip.html" id="back_link" class="link">Back</a></div>
+                            <div class="col-lg-4 offset-lg-4">
+                              <button class="btn btn-primary btn-block buton" type="submit" id="done_button">Done</button>
+                              <a href="./" id="back_link" class="link">Back</a>
+                            </div>
                         </div>
                     </div>
                 </div>

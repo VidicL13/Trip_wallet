@@ -2,7 +2,7 @@
 
 {% block content %}
   <div class="container-fluid myTrip">
-        <h1 class="title" style="color:red">Trip name</h1>
+        <h1 class="title">{{ title }}</h1>
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
                 <div class="forma">
@@ -45,13 +45,13 @@
         <div class="row" style="margin-top:30px;margin-bottom:30px;">
             <div class="col-lg-5 offset-lg-1">
                 <div class="forma">
-                    <a href="choseTypeTransaction.html" id="addTransaction_link" class="link">
+                    <a href="{{ request.path }}choseTypeTransaction" id="addTransaction_link" class="link">
                         <h1 class="text-uppercase text-center">add transaction</h1><i class="fa fa-money illustration text-center" style="color:inherit"></i></a>
                 </div>
             </div>
             <div class="col-lg-5 offset-lg-0">
                 <div class="forma">
-                    <a href="signin.html" class="link">
+                    <a href="nkk" class="link">
                         <h1 class="text-uppercase text-center">my transactions</h1><i class="icon-wallet illustration text-center" style="color:inherit"></i></a>
                 </div>
             </div>
