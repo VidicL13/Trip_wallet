@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip wallet</title>
+    <title> {% block title %} Trip wallet {% endblock %} </title>
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'webapp/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'webapp/fonts/font-awesome.min.css' %}">
@@ -17,12 +17,52 @@
 </head>
 
 <body>
-    <script src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'webapp/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'webapp/js/script.min.js' %}"></script>
     <script src="{% static 'webapp/js/chosen.jquery.min.js' %}"></script>
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <div class="container-fluid">
+
+          <!-- logo -->
+          <a class="navbar-brand" href="#">Trip wallet</a>
+
+          <!-- navigation toggler -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar" aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- navigation buttons -->
+          <div class="collapse navbar-collapse" id="topNavbar">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="fa fa-road" aria-hidden="true"></span>&nbsp; My trips<a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+
+              </ul>
+
+
+              <ul class="navbar-nav">
+                <form class="form-inline my-2 my-lg-0">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                </form>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span class="fa fa-power-off" aria-hidden="true"></span>&nbsp; Logout</a>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </nav>
     {% block content %}
     {% endblock %}
+
 
 </body>
 
