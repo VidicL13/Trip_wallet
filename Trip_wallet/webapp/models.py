@@ -1,20 +1,32 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 from django.contrib.auth.models import User
+
+#dodati jim je treba funkcijonalnost
 
 class PersonalInformation(models.Model):
     user = models.OneToOneField(User,related_name='user', on_delete=models.CASCADE)
-    country = models.CharField(max_length=250, blank=True)
-    address = models.CharField(max_length=250, blank=True)
-    birth_date = models.DateField(blank=True)
-    telephone_number = models.CharField(max_length=20, blank=True)
-    image = models.ImageField(blank=True)
-    tax_number = models.CharField(max_length=20, blank=True)
-    creator = models.OneToOneField(User, related_name='creator', on_delete=models.SET_NULL, blank=True, null=True)
-    user_type = models.CharField(max_length=30, blank=True)
+    country = models.CharField(max_length=250, blank=True, null=True)
+    address = models.CharField(max_length=250, blank=True, null=True)
+    post = models.CharField(max_length=250,blank=True, null=True)
+    postal_code = models.CharField(max_length=10,blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
+    telephone_number = models.CharField(max_length=20, blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+    tax_number = models.CharField(max_length=20, blank=True, null=True)
+    creator = models.ForeignKey(User, related_name='creator', on_delete=models.SET_NULL, blank=True, null=True)
+    user_type = models.CharField(max_length=30, blank=True, null=True)
 
-    def __str__(self):
-        return self.address
+    # whenever we make a new submit it takes us to /12/details page
+    def get_absolute_url(self):
+        return reverse('webapp:detail', kwargs={'pk': self.user.pk})
+
+    #def __str__(self):
+    #    return self.user
+
+
+
 
 class ExchangeRate(models.Model):
     currancy = models.CharField(max_length=30, blank=True)
@@ -27,18 +39,19 @@ class Transaction(models.Model):
     user_recieved = models.OneToOneField(User, related_name='user_recieved', on_delete=models.PROTECT, null=True, blank=True)
     type = models.CharField(max_length=30)
     image = models.ImageField(blank=True, null=True)
+    comment = models.CharField(max_length=1000, blank=True, null=True)
 
 class TransactionInvolvment(models.Model):
-    transaction = models.OneToOneField(Transaction, on_delete=models.CASCADE)
-    user = models.ManyToManyField(User)
+    transaction = models.ManyToManyField(Transaction, related_name='transaction_involvment')
+    user = models.ManyToManyField(User, related_name='user_involvment')
     weight = models.FloatField(blank=False, null=False)
 
 class TransactionLabels(models.Model):
-    transaction = models.ManyToManyField(Transaction)
+    transaction = models.ManyToManyField(Transaction, related_name='transaction_label')
     label = models.CharField(max_length=100)
 
 class TransactionItems(models.Model):
-    transaction = models.ManyToManyField(Transaction)
+    transaction = models.ManyToManyField(Transaction, related_name='transaction_item')
     item = models.CharField(max_length=100)
 
 class Trip(models.Model):

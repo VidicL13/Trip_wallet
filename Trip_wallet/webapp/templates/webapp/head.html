@@ -26,7 +26,7 @@
         <div class="container-fluid">
 
           <!-- logo -->
-          <a class="navbar-brand" href="#">Trip wallet</a>
+          <a class="navbar-brand" href="{% url 'webapp:MAIN' %}">Trip wallet</a>
 
           <!-- navigation toggler -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar" aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,12 +36,29 @@
           <!-- navigation buttons -->
           <div class="collapse navbar-collapse" id="topNavbar">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                <!-- home button -->
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    <span class="fa fa-road" aria-hidden="true"></span>&nbsp; My trips<a>
+                    <span class="fa fa-road" aria-hidden="true"></span>&nbsp;
+                    My trips
+                  <a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Link</a>
+
+                <!-- add new user -->
+                <li class="nav-item {% block new_user %}{% endblock %}">
+                  <a class="nav-link" href="#">
+                    <span class="icon ion-plus" aria-hidden="true"></span>&nbsp;
+                    Add user
+                  </a>
+                </li>
+
+                <!-- user details-->
+                <li class="nav-item {% block user_details %}{% endblock %}">
+                  <a class="nav-link" href="{% url 'webapp:userDetails'}">
+                    <span class="icon ion-user" aria-hidden="true"></span>&nbsp;
+                    My account
+                  </a>
                 </li>
 
               </ul>

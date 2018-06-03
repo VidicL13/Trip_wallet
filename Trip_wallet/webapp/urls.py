@@ -1,9 +1,20 @@
 from django.urls import path
-
 from . import views
+
+app_name = 'webapp'
 
 urlpatterns = [
     path('',views.main, name = 'MAIN'),
+
+    # register
+    path('register/', views.UserFormView.as_view(), name='register'),
+
+    # make details about user
+    # 12/details/
+    path('<int:pk>/details/', views.UserDetailsCreate.as_view(), name='userDetails'),
+
+
+
     path('login/', views.login, name = 'LOGIN'),
     path('signin/', views.signin, name = 'SIGNIN'),
     path('login/forgot/', views.forgot , name = 'Forgot password'),
