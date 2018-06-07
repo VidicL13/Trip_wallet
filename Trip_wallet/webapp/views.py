@@ -54,9 +54,13 @@ class UserDetailsCreate(CreateView):
     form_class = UserPersonalInfoForm
     template_name = 'webapp/userDetails_form.html'
 
-    def get_queryset(self):
-        return self.UserPersonalInfoForm
+    def get_queryset(self, request):
+        current_user = request.user
+        return render(request, self.UserPersonalInfoForm, {'pk': current_user.id})
 
+    def get(self, request):
+        current_user = request.user
+        return render(request, self.UserPersonalInfoForm, {'pk': current_user.id})
 
 # Create your views here.
 def login(request):
