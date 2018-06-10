@@ -6,14 +6,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from .models import PersonalInformation
-from .forms import UserForm, UserPersonalInfoForm
+from .forms import *
+from django.contrib.auth.decorators import login_required
 
 
 # create new user
+# register/
 class UserFormView(View):
     # iz kje dobimo podatke
     form_class = UserForm
-    template_name = 'webapp/signin.html'
+    template_name = 'webapp/registration_form.html'
 
     # display a new form
     def get(self, request):
@@ -41,30 +43,85 @@ class UserFormView(View):
 
             if user is not None:
                 if user.is_active:
+
                     login(request, user)
-                    return redirect('webapp:MAIN')
+                    return redirect('webapp:userDetailsCreate')
 
         return render(request, self.template_name, {'form': form})
 
 
-
-# signin generic view for details
-class UserDetailsCreate(CreateView):
+# create details view for user
+# details/add/  -->  details/12/
+class UserDetailsCreateView(CreateView):
 
     form_class = UserPersonalInfoForm
     template_name = 'webapp/userDetails_form.html'
 
-    def get_queryset(self, request):
-        current_user = request.user
-        return render(request, self.UserPersonalInfoForm, {'pk': current_user.id})
+    # with this chunk we add User Foreign Key
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.user_type = 'normal'
+        return super().form_valid(form)
+
+
+# User details
+# details/12/
+class UserDetailsView(generic.DetailView):
+    model = UserPersonalInfoForm
+    template_name = 'userDetails.html'
+    context_object_name = 'form'
+
+
+# Update details view for user
+# details/12/edit
+class UserDetailsUpdateView(UpdateView):
+
+    form_class = UserPersonalInfoForm
+    template_name = 'webapp/userDetails_form.html'
+
+
+# Delete details view for user
+# details/12/delete
+class UserDetailsDeleteView(DeleteView):
+
+    form_class = UserPersonalInfoForm
+    success_url = reverse_lazy('register')
+
+
+# Login form
+# login/
+class UserLoginFormView(View):
+    form_class = LoginForm
+    template_name = 'webapp/login_form.html'
 
     def get(self, request):
-        current_user = request.user
-        return render(request, self.UserPersonalInfoForm, {'pk': current_user.id})
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
 
-# Create your views here.
-def login(request):
-    return render(request, template_name='webapp/login.html')
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            # cleaned (normalized data)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # authenticate user
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('webapp:MAIN')
+
+        # if form isn't valid
+        return render(request, self.template_name, {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    success_url = reverse_lazy('Login')
+
+
 
 def signin(request):
     return render(request, template_name='webapp/signin.html')

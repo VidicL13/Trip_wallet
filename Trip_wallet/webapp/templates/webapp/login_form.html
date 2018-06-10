@@ -1,0 +1,46 @@
+{% extends "webapp/head.html" %}
+{% block content %}
+
+<!-- it requires inputs {'form': form} -->
+
+  <div class="container-fluid login">
+      <div class="row">
+          <div class="col-lg-4 offset-lg-4">
+              <div class="forma" style="margin-top: 30px">
+                  <div class="illustration"><i class="icon ion-ios-locked-outline illustration"></i></div>
+                  {% if error_message %}
+                      <p><strong> {{error_message}} </strong></p>
+                  {% endif %}
+
+                  <!-- login form -->
+                  <form class="form-horisontal" action="" method="post" role="form">
+                      {% csrf_token %}
+                      
+                      <!-- recives input 'form' and creates a form -->
+                      {% include 'webapp/form-template.html' %}
+
+                      <div class="form-group">
+                          <div class="col-lg-4 offset-lg-4">
+                              <button class="btn btn-outline-success" type="submit">Log in</button>
+                          </div>
+                      </div>
+                  </form>
+
+                  <!-- forgoten password link -->
+                  <div class="row">
+                      <div class="col-lg-4 offset-lg-4">
+                          <a href="#" class="link">Forgot your password?</a>
+                      </div>
+                  </div>
+
+                  <!-- New account link -->
+                  <div class="row">
+                      <div class="col-lg-4 offset-lg-4">
+                          <a href="#" id="signin_link" class="link">Sign in</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}

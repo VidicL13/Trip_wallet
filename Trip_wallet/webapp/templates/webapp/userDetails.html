@@ -1,10 +1,21 @@
 {% extends "webapp/head.html" %}
+{% block title %}Account info{% endblock %}
 {% block user_details_active %}active{% endblock %}
 {% block content %}
   <div class="container-fluid signin">
       <div class="row">
           <div class="col-lg-8 offset-lg-2">
               <div class="forma" style="margin-top: 30px">
+
+                  <div class="row">
+                      <div class="col-lg-12">
+                        <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+                        <div class="col-sm-10">
+                            {{field}}
+                        </div>
+                      </div>
+
+                  </div>
                 <form class="form-horisontal" action="" method="post" enctype="multipart/form-data">
                   {% csrf_token %}
                   {% include 'webapp/form-template.html' %}

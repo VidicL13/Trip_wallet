@@ -20,10 +20,10 @@ class PersonalInformation(models.Model):
 
     # whenever we make a new submit it takes us to /12/details page
     def get_absolute_url(self):
-        return reverse('webapp:detail', kwargs={'pk': self.user.pk})
+        return reverse('webapp:userDetailsUpdate', kwargs={'pk': self.user.pk})
 
-    #def __str__(self):
-    #    return self.user
+    def __str__(self):
+        return self.user
 
 
 
@@ -41,7 +41,6 @@ class Transaction(models.Model):
     image = models.ImageField(blank=True, null=True)
     receiver = models.CharField(max_length=250)
     comment = models.CharField(max_length=1000, blank=True, null=True)
-
 
 class TransactionInvolvment(models.Model):
     transaction = models.ManyToManyField(Transaction, related_name='transaction_involvment')

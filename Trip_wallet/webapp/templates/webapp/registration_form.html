@@ -1,0 +1,32 @@
+{% extends "webapp/head.html" %}
+{% block title %} Register {% endblock %}
+
+{% block content %}
+  <div class="container-fluid signin">
+      <div class="row">
+          <div class="col-lg-6 offset-lg-3">
+              <div class="forma" style="margin-top: 30px">
+                  <div class="illustration"><i class="fa fa-user-plus illustration"></i></div>
+                  {% if error_message %}
+                      <p><strong> {{error_message}} </strong></p>
+                  {% endif %}
+                  <form class="form-horisontal" action="" method="post" role="form" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      {% include 'webapp/form-template.html' %}
+
+                      <div class="form-group">
+                          <div class="col-lg-4 offset-lg-4">
+                              <button class="btn btn-outline-success" type="submit">Create New Account</button>
+                          </div>
+                      </div>
+                  </form>
+                  <div class="form-group">
+                      <div class="row">
+                          <div class="col"><a href="#" class="link">Already have an account? Log in.</a></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}

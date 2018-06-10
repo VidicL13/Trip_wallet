@@ -32,9 +32,8 @@ h5,h6{
   padding:15px 0 20px
 }
 
-.forma input,.forma textarea{
-  background:0 0;
-  display: block;
+input, textarea{
+  background-color: rgba(200, 200, 200, 0.5);
   padding:4px;
   width:inherit;
   border:none;
@@ -42,10 +41,11 @@ h5,h6{
   border-radius:5px;
   box-shadow:none;
   outline:0;
-  color:inherit
+  color:inherit;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.5)
 }
 
-.forma input:active,.forma input:focus,.forma textarea:active,.forma textarea:focus{
+ input:active, input:focus, textarea:active, textarea:focus, input:hover{
   background:#fff;
   border:none;
   border-radius:0;

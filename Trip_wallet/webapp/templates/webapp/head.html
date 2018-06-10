@@ -30,49 +30,61 @@
 
           <!-- navigation toggler -->
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar" aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
           </button>
 
           <!-- navigation buttons -->
           <div class="collapse navbar-collapse" id="topNavbar">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <!-- home button -->
+                  <li class="nav-item ">
+                      <a class="nav-link" href="#">
+                          <span class="fa fa-road" aria-hidden="true"></span>&nbsp;
+                          My trips
+                      <a>
+                  </li>
 
-                <!-- home button -->
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="fa fa-road" aria-hidden="true"></span>&nbsp;
-                    My trips
-                  <a>
-                </li>
+                  <!-- add new user -->
+                  <li class="nav-item dropdown {% block new_user_active %}{% endblock %}">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="fa fa-user-plus" aria-hidden="true"></span>&nbsp;
+                        Add user
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="#">New User</a>
+                          <a class="dropdown-item" href="#">Fake User</a>
+                          <a class="dropdown-item" href="#">Donator</a>
+                      </div>
+                  
 
-                <!-- add new user -->
-                <li class="nav-item {% block new_user %}{% endblock %}">
-                  <a class="nav-link" href="#">
-                    <span class="icon ion-plus" aria-hidden="true"></span>&nbsp;
-                    Add user
-                  </a>
-                </li>
-
-                <!-- user details-->
-                <li class="nav-item {% block user_details %}{% endblock %}">
-                  <a class="nav-link" href="#">
-                    <span class="icon ion-user" aria-hidden="true"></span>&nbsp;
-                    My account
-                  </a>
-                </li>
-
+                  <!-- user details-->
+                  <li class="nav-item {% block user_details_active %}{% endblock %}">
+                      <a class="nav-link" href="#">
+                          <span class="icon ion-user" aria-hidden="true"></span>&nbsp;
+                          My account
+                      </a>
+                  </li>
               </ul>
 
-
               <ul class="navbar-nav">
-                <form class="form-inline my-2 my-lg-0">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                </form>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <span class="fa fa-power-off" aria-hidden="true"></span>&nbsp; Logout</a>
-                </li>
+                  <!-- search -->
+                  <form class="form-inline my-2 my-lg-0">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                  </form>
+
+                  <!-- login-logout -->
+                  {% if user.is_authenticated %}
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'webapp:LogOut' %}">
+                          <span class="fa fa-power-off" aria-hidden="true"></span>&nbsp; Logout</a>
+                      </li>
+                  {% else %}
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">
+                          <span class="fa fa-power-off" aria-hidden="true"></span>&nbsp; Login</a>
+                      </li>
+                  {% endif %}
               </ul>
             </div>
         </div>

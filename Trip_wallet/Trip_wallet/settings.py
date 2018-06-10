@@ -21,8 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # NOTE: SECRET_KEY is in another file within gitignore
-from . import pyData
-SECRET_KEY = pyData.SECRET_KEY
+# from . import pyData
+# SECRET_KEY = pyData.SECRET_KEY
+SECRET_KEY = 'neki_332552_:gokd4f03'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -75,8 +77,13 @@ WSGI_APPLICATION = 'Trip_wallet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 # NOTE: this information is also in another file
-DATABASES = pyData.DATABASES
-
+# DATABASES = pyData.DATABASES
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'temp',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

@@ -10,12 +10,23 @@ urlpatterns = [
     path('register/', views.UserFormView.as_view(), name='register'),
 
     # make details about user
-    # 12/details/
-    path('<int:pk>/details/', views.UserDetailsCreate.as_view(), name='userDetails'),
+    path('details/add/', views.UserDetailsCreateView.as_view(), name='userDetailsCreate'),
+
+    # user details update
+    # details/12/edit
+    path('details/<int:pk>/edit', views.UserDetailsUpdateView.as_view(), name='userDetailsUpdate', kwargs = {'pk'}),
+
+    # user details delete
+    # details/12/delete
+    path('details/<int:pk>/delete', views.UserDetailsDeleteView.as_view(), name='UserDetailsDelete'),
+
+    # Log in
+    path('login/', views.loginn, name = 'Login'),
+    # Log out
+    path('logout/', views.logout_view, name='Logout'),
 
 
 
-    path('login/', views.login, name = 'LOGIN'),
     path('signin/', views.signin, name = 'SIGNIN'),
     path('login/forgot/', views.forgot , name = 'Forgot password'),
     path('main/', views.main, name = 'MAIN'),
