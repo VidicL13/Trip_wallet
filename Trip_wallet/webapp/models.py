@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 class PersonalInformation(models.Model):
     user = models.OneToOneField(User,related_name='user', on_delete=models.CASCADE)
     country = models.CharField(max_length=250, blank=True, null=True)
+    city = models.CharField(max_length=250, blank=True, null=True)
     address = models.CharField(max_length=250, blank=True, null=True)
     post = models.CharField(max_length=250,blank=True, null=True)
     postal_code = models.CharField(max_length=10,blank=True, null=True)
@@ -20,12 +21,7 @@ class PersonalInformation(models.Model):
 
     # whenever we make a new submit it takes us to /12/details page
     def get_absolute_url(self):
-        return reverse('webapp:userDetailsUpdate', kwargs={'pk': self.user.pk})
-
-    def __str__(self):
-        return self.user
-
-
+        return reverse('webapp:UserDetails', kwargs={'pk': self.pk})
 
 
 class ExchangeRate(models.Model):
@@ -33,7 +29,7 @@ class ExchangeRate(models.Model):
     value = models.FloatField(blank=True)
 
 class Transaction(models.Model):
-    time_stamp = models.DateTimeField(default=timezone.now)
+    time_stamp = models.DateTimeField(auto_now_add=True)
     value = models.FloatField(blank=True)
     user_payed = models.OneToOneField(User, related_name='user_payed', on_delete=models.PROTECT)
     user_recieved = models.OneToOneField(User, related_name='user_recieved', on_delete=models.PROTECT, null=True, blank=True)

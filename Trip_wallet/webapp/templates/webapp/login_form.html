@@ -1,41 +1,55 @@
 {% extends "webapp/head.html" %}
+{% block title %}Log in{% endblock %}
 {% block content %}
 
 <!-- it requires inputs {'form': form} -->
 
   <div class="container-fluid login">
       <div class="row">
+        {{err}}
           <div class="col-lg-4 offset-lg-4">
+              {% include 'webapp/messages.html' %}
               <div class="forma" style="margin-top: 30px">
                   <div class="illustration"><i class="icon ion-ios-locked-outline illustration"></i></div>
-                  {% if error_message %}
-                      <p><strong> {{error_message}} </strong></p>
-                  {% endif %}
 
                   <!-- login form -->
                   <form class="form-horisontal" action="" method="post" role="form">
                       {% csrf_token %}
-                      
+
                       <!-- recives input 'form' and creates a form -->
-                      {% include 'webapp/form-template.html' %}
+                      {% for field in form %}
+                          <div class="form-group">
+                              <div class="col-sm-offset-2 col-sm-10">
+                                  <span class="text-danger small"> {{field.errors}} </span>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-12">
+                                      {{field}}
+                                  </div>
+                              </div>
+                          </div>
+                      {% endfor %}
 
                       <div class="form-group">
-                          <div class="col-lg-4 offset-lg-4">
-                              <button class="btn btn-outline-success" type="submit">Log in</button>
+                          <div class="col-lg-6 offset-lg-3">
+                              {% if request.GET.next %}
+                                  <input type="hidden" name="next" value="{{request.GET.next}}">
+                              {% endif %}
+                              <button class="btn btn-outline-success btn-block" type="submit">Log in</button>
                           </div>
                       </div>
                   </form>
 
                   <!-- forgoten password link -->
                   <div class="row">
-                      <div class="col-lg-4 offset-lg-4">
+                      <div class="col-lg-8 offset-lg-2">
                           <a href="#" class="link">Forgot your password?</a>
                       </div>
                   </div>
 
                   <!-- New account link -->
                   <div class="row">
-                      <div class="col-lg-4 offset-lg-4">
+                      <div class="col-lg-8 offset-lg-2">
                           <a href="#" id="signin_link" class="link">Sign in</a>
                       </div>
                   </div>

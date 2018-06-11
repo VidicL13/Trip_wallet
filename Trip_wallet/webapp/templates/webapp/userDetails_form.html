@@ -4,14 +4,54 @@
   <div class="container-fluid signin">
       <div class="row">
           <div class="col-lg-8 offset-lg-2">
+              {% include 'webapp/messages.html' %}
               <div class="forma" style="margin-top: 30px">
-                <form class="form-horisontal" action="" method="post" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  {% include 'webapp/form-template.html' %}
-                  <div class="form-group">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
-                  </div>
-                </form>
+                  <form class="form-horisontal" action="" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      {% if form %}
+                          {% include 'webapp/form-template.html' %}
+                      {% else %}
+                          <!-- Account information -->
+                          <div class="form-group">
+                              <h4>Account information</h4>
+                              {% with form=form_user %}
+                                  {% include 'webapp/form-template.html' %}
+                              {% endwith %}
+                          </div>
+
+                          <!-- reset password -->
+                          <div class="form-group" style="margin-bottom: 30px">
+                              <h4>Set new password</h4>
+                              <div class="row">
+                                  <div class="col-lg-3">
+                                      <a href="{% url 'webapp:ResetPassword' pk %}" class="btn btn-outline-success btn-block" role="button" aria-disabled="true">
+                                          Reset password
+                                      </a>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- Personal information -->
+                          <div class="form-group">
+                              <h4>Personal information</h4>
+                              {% with form=form_personal %}
+                                  {% include 'webapp/form-template.html' %}
+                              {% endwith %}
+                          </div>
+                      {% endif %}
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-lg-4 offset-2">
+                                  <button class="btn btn-outline-success btn-block" type="submit">Submit</button>
+                              </div>
+                              <div class="col-lg-4">
+                                  <a href="{% url 'webapp:UserDetailsDelete' pk %}" class="btn btn-outline-danger btn-block" role="button" aria-disabled="true">
+                                      <span class="fa fa-trash-o" aria-hidden="true"></span>&nbsp;
+                                      Delete account
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
               </div>
           </div>
       </div>

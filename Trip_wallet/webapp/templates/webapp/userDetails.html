@@ -5,24 +5,129 @@
   <div class="container-fluid signin">
       <div class="row">
           <div class="col-lg-8 offset-lg-2">
+              {% include 'webapp/messages.html' %}
+
               <div class="forma" style="margin-top: 30px">
-
-                  <div class="row">
-                      <div class="col-lg-12">
-                        <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-                        <div class="col-sm-10">
-                            {{field}}
-                        </div>
-                      </div>
-
-                  </div>
-                <form class="form-horisontal" action="" method="post" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  {% include 'webapp/form-template.html' %}
+                  <!-- personal info -->
                   <div class="form-group">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+                      <div class="row">
+                          <div class="col-lg-7">
+                              <h4 style="margin-bottom: 20px">Personal information</h4>
+                              <div class="row">
+                                  <div class="col-lg-5">
+                                      <label class="form-text text-muted">First name:</label>
+                                  </div>
+                                  <div class="col-lg-7">
+                                      {{PersInfo.user.first_name}}
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-lg-5">
+                                      <label class="form-text text-muted">Last name:</label>
+                                  </div>
+                                  <div class="col-lg-7">
+                                      {{PersInfo.user.last_name}}
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-lg-5">
+                                      <label class="form-text text-muted">Date of birth:</label>
+                                  </div>
+                                  <div class="col-lg-7">
+                                      {{PersInfo.birth_date}}
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-lg-5">
+                                      <label class="form-text text-muted">Telephone number:</label>
+                                  </div>
+                                  <div class="col-lg-7">
+                                      {{PersInfo.telephone_number}}
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- image -->
+                          <div class="col-lg-5">
+                              <div class="row">
+                                <div class="offset-4">
+                                    {% if PersInfo.image %}
+                                        <img src="{{PersInfo.image}}" class="rounded" alt="Image">
+                                    {% else %}
+                                        <div class="illustration"><i class="fa fa-user illustration"></i></div>
+                                    {% endif %}
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="offset-3">
+                                    <a href="{% url 'webapp:userDetailsUpdate' PersInfo.pk %}" class="btn btn-outline-success btn-block" role="button" aria-disabled="true">
+                                        <span class="fa fa-edit" aria-hidden="true"></span>&nbsp;
+                                        Edit account
+                                    </a>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
                   </div>
-                </form>
+
+                  <!-- address info -->
+                  <div class="form-group">
+                      <h4 style="margin-bottom: 20px">Address information</h4>
+                      <div class="row">
+                          <div class="col-lg-3">
+                              <label class="form-text text-muted">Country:</label>
+                          </div>
+                          <div class="col-lg-9">
+                              {{PersInfo.country}}
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-3">
+                              <label class="form-text text-muted">City:</label>
+                          </div>
+                          <div class="col-lg-9">
+                              {{PersInfo.city}}
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-3">
+                              <label class="form-text text-muted">Postal code:</label>
+                          </div>
+                          <div class="col-lg-9">
+                              {{PersInfo.postal_code}}
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-3">
+                              <label class="form-text text-muted">Address:</label>
+                          </div>
+                          <div class="col-lg-9">
+                              {{PersInfo.address}}
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- account info -->
+                  <div class="form-group">
+                      <h4>Account information</h4>
+                      <div class="row">
+                          <div class="col-lg-3">
+                              <label class="form-text text-muted">Username:</label>
+                          </div>
+                          <div class="col-lg-9">
+                              {{PersInfo.user.username}}
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-3">
+                              <label class="form-text text-muted">Email:</label>
+                          </div>
+                          <div class="col-lg-9">
+                              {{PersInfo.user.email}}
+                          </div>
+                      </div>
+                  </div>
+
               </div>
           </div>
       </div>

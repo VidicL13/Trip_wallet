@@ -1,10 +1,10 @@
 {% extends 'webapp/head.html' %}
-
+{% block title %}My trips{% endblock %}
 {% block content %}
   <div class="container-fluid main">
-        <h1 class="text-center text-uppercase title">my trips</h1>
         <div class="row" id="table_trips">
             <div class="col-lg-8 offset-lg-2">
+                {% include 'webapp/messages.html' %}
                 <div class="box">
                     <a href="#" class="link">
                         <h2>Heading 1</h2>

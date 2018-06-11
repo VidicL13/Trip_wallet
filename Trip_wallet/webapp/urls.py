@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.decorators import login_required
 
 app_name = 'webapp'
 
@@ -7,25 +8,28 @@ urlpatterns = [
     path('',views.main, name = 'MAIN'),
 
     # register
-    path('register/', views.UserFormView.as_view(), name='register'),
-
-    # make details about user
-    path('details/add/', views.UserDetailsCreateView.as_view(), name='userDetailsCreate'),
+    path('register/', views.UserRegisterFormView.as_view(), name='register'),
 
     # user details update
     # details/12/edit
-    path('details/<int:pk>/edit', views.UserDetailsUpdateView.as_view(), name='userDetailsUpdate', kwargs = {'pk'}),
+    path('details/<int:pk>/edit/', login_required(views.UserDetailsUpdateView.as_view()), name='userDetailsUpdate'),
 
     # user details delete
     # details/12/delete
-    path('details/<int:pk>/delete', views.UserDetailsDeleteView.as_view(), name='UserDetailsDelete'),
+    path('details/<int:pk>/delete/', login_required(views.UserDetailsDeleteView.as_view()), name='UserDetailsDelete'),
+
+    # user details view
+    # dtails/12/
+    path('details/<int:pk>/', login_required(views.UserDetailsView.as_view()), name = 'UserDetails'),
 
     # Log in
-    path('login/', views.loginn, name = 'Login'),
+    path('login/', views.UserLoginFormView.as_view(), name = 'Login'),
     # Log out
     path('logout/', views.logout_view, name='Logout'),
 
-
+    # Reset password
+    # newpassword/12/
+    path('newpassword/<int:pk>/', login_required(views.ResetPasswordView.as_view()), name = 'ResetPassword'),
 
     path('signin/', views.signin, name = 'SIGNIN'),
     path('login/forgot/', views.forgot , name = 'Forgot password'),
