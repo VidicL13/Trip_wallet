@@ -43,14 +43,14 @@
                   <!-- forgoten password link -->
                   <div class="row">
                       <div class="col-lg-8 offset-lg-2">
-                          <a href="#" class="link">Forgot your password?</a>
+                          <a href="{% url 'webapp:ForgotPassword' %}" class="link">Forgot your password?</a>
                       </div>
                   </div>
 
                   <!-- New account link -->
                   <div class="row">
                       <div class="col-lg-8 offset-lg-2">
-                          <a href="#" id="signin_link" class="link">Sign in</a>
+                          <a href="{% url 'webapp:register' %}" id="signin_link" class="link">Sign in</a>
                       </div>
                   </div>
               </div>

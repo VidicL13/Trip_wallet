@@ -31,8 +31,12 @@ urlpatterns = [
     # newpassword/12/
     path('newpassword/<int:pk>/', login_required(views.ResetPasswordView.as_view()), name = 'ResetPassword'),
 
+    # Forgot password
+    # login/forgot/
+    path('login/forgot/', views.UserForgotPasswordView.as_view() , name = 'ForgotPassword'),
+
+
     path('signin/', views.signin, name = 'SIGNIN'),
-    path('login/forgot/', views.forgot , name = 'Forgot password'),
     path('main/', views.main, name = 'MAIN'),
     path('newtrip/', views.newtrip, name = 'New trip'),
     path('newtrip/choseTypeUser/', views.choseTypeUser, name = 'Chose user type'),

@@ -3,14 +3,21 @@
         <div class="col-lg-12 {{ message.tags }}" id="message_box">
             <h4> {{message}} </h4>
         </div>
-        {% if 'delay' == message.tags %}
+        {% if 'delay' in message.tags %}
             <script type="text/javascript">
                 $('#message_box').delay(5000).slideDown(1000).delay(3000).slideUp(1000);
             </script>
-        {% else %}{% endif %}
-            <script type="text/javascript">
-                $('#message_box').slideDown(1000).delay(3000).slideUp(1000);
-            </script>
+        {% else %}
+            {% if 'long' in message.tags %}
+                <script type="text/javascript">
+                    $('#message_box').slideDown(1000).delay(10000).slideUp(1000);
+                </script>
+            {% else %}
+                <script type="text/javascript">
+                    $('#message_box').slideDown(1000).delay(3000).slideUp(1000);
+                </script>
+            {% endif %}
+        {% endif %}
 
     {% endfor %}
 {% endif %}

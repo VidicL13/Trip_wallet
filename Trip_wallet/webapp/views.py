@@ -1,14 +1,17 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.views import generic
-from django.views.generic import View
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.views import generic
+from django.views.generic import View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import *
 from .forms import *
+from random import choice
+from string import ascii_letters
 
 
 # create new user
@@ -146,7 +149,7 @@ class UserDetailsDeleteView(View):
         else:
             messages.error(request, 'You do not have the permission to view this page!')
             return redirect('webapp:MAIN')
-            
+
 
 # User details
 # details/12/
@@ -244,6 +247,41 @@ def logout_view(request):
     logout(request)
     return redirect('webapp:Login')
 
+
+# Forgot password
+# login/forgot/
+class UserForgotPasswordView(View):
+    form_class = UserForgotPasswordForm
+    template_name='webapp/forgot.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # storing it localy not to DB
+            username = request.POST['username']
+            password = str(''.join(choice(ascii_letters) for i in range(12)))
+            user = User.objects.get(username=username)
+            print(user)
+            user.set_password(password)
+            user.save()
+            mes = 'Here is your new password: \n' + password + '\n please change it as soon as possible'
+            messages.success(request, mes,extra_tags='long')
+            return redirect('webapp:Login')
+            # uncomment for sending email
+            # send_mail(
+            #     'Forgotten password',
+            #     mes,
+            #     settings.EMAIL_HOST_USER,
+            #     [instance_user.email],
+            #     fail_silently=False,
+            # )
+        mes = 'Your form was not valid!'
+        messages.error(request, mes)
+        return render(request, self.template_name, {'form': form})
 
 
 def signin(request):

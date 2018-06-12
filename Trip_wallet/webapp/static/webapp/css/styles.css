@@ -23,7 +23,7 @@
   text-decoration:none;
 }
 
-.addDonator,.addDummy,.chosetype,.forgot,.login,.main,.myTrip,.newtrip,.signin,.transaction{
+.unique{
   background:url(../../webapp/img/Background.jpg) #475d62;
   background-size:cover;
   position:relative;
