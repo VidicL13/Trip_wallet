@@ -48,7 +48,7 @@
                         Trips
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                          <a class="dropdown-item {% block trip_active_trip %}{% endblock %}" href="{% url 'webapp:MAIN' %}">My trips</a>
+                          <a class="dropdown-item {% block trip_active_trip %}{% endblock %}" href="{% url 'webapp:TripList' %}">My trips</a>
                           <a class="dropdown-item {% block trip_active_new %}{% endblock %}" href="{% url 'webapp:TripCreate' %}">Create New Trip</a>
                       </div>
                   </li>

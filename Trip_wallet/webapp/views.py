@@ -240,7 +240,7 @@ class UserLoginFormView(View):
                 else:
                     mes = username + ' ' + 'Wellcome to Trip wallet'
                     messages.success(request, mes)
-                    return redirect('webapp:MAIN')
+                    return redirect('webapp:TripList')
         # if fails than same form with errors
         messages.error(request, 'Incorrect username or password!')
         return render(request, self.template_name, {'form': form})
@@ -331,6 +331,7 @@ class TripCreateView(View):
 
         return render(request, self.template_name, {'form': form})
 
+
 # Trip delete
 # trip/12/delete/
 class TripDeleteView(View):
@@ -364,6 +365,7 @@ class TripDeleteView(View):
             messages.error(request, 'You do not have the permission to view this page!')
             return redirect('webapp:MAIN')
 
+
 # View all logedin users trips
 # trip/
 class MyTripsView(View):
@@ -372,8 +374,9 @@ class MyTripsView(View):
     template_name = 'webapp/tripList.html'
 
     def get(self, request):
-        trips = Trip.objects.filter(friends=self.request.user)
+        trips = Trip.objects.filter(friends=self.request.user).order_by('-is_active', '-time_stamp')
         return render(request, self.template_name, {'trips': trips})
+
 
 # activate button
 # trip/12/activate/

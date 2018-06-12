@@ -1,19 +1,39 @@
 {% extends "webapp/head.html" %}
 {% block title %}Trip wallet{% endblock %}
 {% block content %}
+<script>
+    $(document).ready(function(){
+        $("#forma").css('opacity', 0)
+          .animate(
+                { opacity: 1 },
+                { queue: false, duration: 2000 });
+              $("#tit").css('opacity', 0).delay(2000)
+                .animate(
+                      { opacity: 1 },
+                      { queue: false, duration: 3000 });
+              $("#dtit2").css('opacity', 0).delay(3000)
+                .animate(
+                      { opacity: 1 },
+                      { queue: false, duration: 3000 });
+              $("#dtit3").css('opacity', 0).delay(4000)
+                .animate(
+                      { opacity: 1 },
+                      { queue: false, duration: 3000 });
+    });
+</script>
     <div class="container-fluid unique">
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 {% include 'webapp/messages.html' %}
-                <div class="forma" style="margin-top: 30px">
+                <div class="forma" id=forma style="margin-top: 30px">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-8 offset-2">
-                                <h2 style="margin-bottom: 20px" class="text-center">Wellcome</h2>
-                                <div class="text-center">
+                                <h2 id="tit" style="margin-bottom: 20px" class="text-center">Wellcome to</h2>
+                                <div id="tit2" class="text-center">
                                     <span class="fa fa-road illustration"></span>
                                 </div>
-                                <p class="text-center">Wellcome to the new TRIP WALLET app</p>
+                                <h1 id="tit3"class="text-center" style="margin-top: 5rem; margin-bottom: 10rem">Trip Wallet</h1>
                             </div>
                         </div>
                     </div>
