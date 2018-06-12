@@ -1,0 +1,58 @@
+{% for trip in trips %}
+    <div class="col-4" style="padding: 30px; margin-top: 50px">
+        <div class="forma" style="height: 100%">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 style="margin-bottom: 30px">{{trip.trip_name}}</h4>
+                    </div>
+                    <div class="col-4">
+                        {% if trip.is_active %}
+                            <a href="{% url 'webapp:tripActivate' trip.pk %}" class="btn btn-outline-success btn-block" role="button" aria-disabled="true">
+                                <span class="fa fa-check" aria-hidden="true" style="color: rgba(40, 167, 69,0.8)"></span>&nbsp;
+                                Active
+                            </a>
+                        {% else %}
+                            <a href="{% url 'webapp:tripActivate' trip.pk %}" class="btn btn-outline-danger btn-block" role="button" aria-disabled="true">
+                                <span class="fa fa-remove" aria-hidden="true" style="color: rgba(220, 53, 69, 0.8)"></span>&nbsp;
+                                Inactive
+                            </a>
+
+                        {% endif %}
+                    </div>
+                </div>
+                <h6 style="margin-bottom: 15px">
+                    {% for c in trip.country.all %}
+                        - {{c}}
+                    {% endfor %}
+                </h6>
+                <h6 style="margin-bottom: 15px">{{trip.description}}</h6>
+            </div>
+            <div class="form-group">
+                <h4 style="margin-bottom: 30px;margin-top: 50px">Fellow travellers</h4>
+                <h6 style="margin-bottom: 15px">
+                  {% for c in trip.friends.all %}
+                      - {{c}}
+                  {% endfor %}
+                </h6>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-6">
+                      <a href="{% url 'webapp:TripDetails' trip.pk %}" class="btn btn-outline-success btn-block" role="button" aria-disabled="true">
+                          <span class="fa fa-road" aria-hidden="true"></span>&nbsp;
+                          View trip details
+                      </a>
+                    </div>
+                    <div class="col-6">
+                      <a href="{% url 'webapp:TripDetailsDelete' trip.pk %}" class="btn btn-outline-danger btn-block" role="button" aria-disabled="true">
+                          <span class="fa fa-trash" aria-hidden="true"></span>&nbsp;
+                          Delete trip
+                      </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endfor %}

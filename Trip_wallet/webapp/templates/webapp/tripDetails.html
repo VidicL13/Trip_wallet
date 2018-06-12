@@ -1,0 +1,37 @@
+{% extends "webapp/head.html" %}
+{% block title %}Trip details{% endblock %}
+{% block user_details_active %}active{% endblock %}
+{% block content %}
+  <div class="container-fluid unique">
+      <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+              {% include 'webapp/messages.html' %}
+              <div class="forma" style="margin-top: 30px">
+                  <div class="form-group">
+                      <h4 style="margin-bottom: 30px">{{trip.trip_name}}</h4>
+                      <h6 style="margin-bottom: 15px">
+                          {% for c in trip.country.all %}
+                              - {{c}}
+                          {% endfor %}
+                      </h6>
+                      <h6 style="margin-bottom: 15px">{{trip.description}}</h6>
+                  </div>
+                  <div class="form-group">
+                      <h4 style="margin-bottom: 30px;margin-top: 50px">Fellow travellers</h4>
+                      <h6 style="margin-bottom: 15px">
+                        {% for c in trip.friends.all %}
+                            - {{c}}
+                        {% endfor %}
+                      </h6>
+                  </div>
+                  <div class="form-group">
+                      <a href="{% url 'webapp:TripDetails' trip.pk}" class="btn btn-outline-success btn-block" role="button" aria-disabled="true">
+                          <span class="fa fa-road" aria-hidden="true"></span>&nbsp;
+                          View trip
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}

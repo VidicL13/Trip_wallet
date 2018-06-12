@@ -50,6 +50,10 @@ h5,h6{
   padding:15px 0 20px
 }
 
+.forma .select2-container{
+  color:rgb(80, 80, 80)
+}
+
 input, textarea{
   background-color: transparent;
   padding:4px;
@@ -62,7 +66,7 @@ input, textarea{
   color:inherit;
 }
 
- input:active, input:focus, textarea:active, textarea:focus, input:hover{
+ input:active, input:focus, textarea:active, textarea:focus, input:hover, textarea:hover{
   background:#fff;
   border:none;
   border-radius:5px;
@@ -111,15 +115,8 @@ form .form-control{
   color:#4674b9
 }
 
-.form-row{
-  padding:5px
-}
-.form-check{
-  display:block;
-  text-align:left;
-  color:#6f7a85;
-  opacity:.9
-}
+
+
 .add,.box{
   text-align:left;
   color:#a0a0a0;

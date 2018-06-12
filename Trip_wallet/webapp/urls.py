@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 app_name = 'webapp'
 
 urlpatterns = [
-    path('',views.main, name = 'MAIN'),
+    path('', views.WellcomeView.as_view(), name = 'Wellcome'),
 
     # register
     path('register/', views.UserRegisterFormView.as_view(), name='register'),
@@ -35,10 +35,32 @@ urlpatterns = [
     # login/forgot/
     path('login/forgot/', views.UserForgotPasswordView.as_view() , name = 'ForgotPassword'),
 
+    # Create trip
+    # trip/add/
+    path('trip/add/', login_required(views.TripCreateView.as_view()), name = 'TripCreate'),
+
+    # Trips list
+    # trip/
+    path('trip/', login_required(views.MyTripsView.as_view()), name = 'TripList'),
+    # activate button
+    # trip/12/activate/
+    path('trip/<int:pk>/activate', login_required(views.tripActivateView.as_view()), name = 'tripActivate'),
+
+    # Trip details
+    # trip/12/
+    path('trip/<int:pk>/', login_required(views.TripDetailsView.as_view()), name = 'TripDetails'),
+
+    # Trip details update
+    # trip/12/update/
+    path('trip/<int:pk>/update/', login_required(views.TripCreateView.as_view()), name = 'TripDetailsUpdate'),
+
+    # Trip delete
+    # trip/12/delete/
+    path('trip/<int:pk>/delete/', login_required(views.TripDeleteView.as_view()), name = 'TripDetailsDelete'),
 
     path('signin/', views.signin, name = 'SIGNIN'),
     path('main/', views.main, name = 'MAIN'),
-    path('newtrip/', views.newtrip, name = 'New trip'),
+
     path('newtrip/choseTypeUser/', views.choseTypeUser, name = 'Chose user type'),
     path('newtrip/choseTypeUser/addUser', views.addUser, name = 'Add new user'),
     path('newtrip/choseTypeUser/addDummy', views.addDummy, name = 'Add dummy user'),

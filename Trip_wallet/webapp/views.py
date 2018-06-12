@@ -14,6 +14,14 @@ from random import choice
 from string import ascii_letters
 
 
+# wellcome page
+# ''
+class WellcomeView(View):
+    template_name = 'webapp/wellcome.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
 # create new user
 # register/
 class UserRegisterFormView(View):
@@ -124,7 +132,7 @@ class UserDetailsUpdateView(View):
 # Delete details view for user
 # details/12/delete
 class UserDetailsDeleteView(View):
-    template_name = 'webapp/deleteUser.html'
+    template_name = 'webapp/userDelete.html'
     def get(self, request, pk):
         if (PersonalInformation.objects.get(user=request.user).pk == pk) or (request.user.is_superuser):
             return render(request, self.template_name, {'pk': pk})
@@ -282,6 +290,119 @@ class UserForgotPasswordView(View):
         mes = 'Your form was not valid!'
         messages.error(request, mes)
         return render(request, self.template_name, {'form': form})
+
+
+# Create trip
+# trip/add/
+class TripCreateView(View):
+    form_class = CreateTripForm
+    model = Trip
+    template_name = 'webapp/tripDetails_form.html'
+
+    # display a new form
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            country = dict(request.POST)['country']
+            friends = dict(request.POST)['friends']
+            new_trip = self.model.objects.create(
+                trip_name = request.POST['trip_name'],
+                description = request.POST['description'],
+                is_active = True)
+            for user in friends:
+                new_trip.friends.add(user)
+                new_trip.save()
+            for visited in country:
+                new_trip.country.add(visited)
+                new_trip.save()
+            # add creator if he wasn't there
+            user = User.objects.get(username=self.request.user).pk
+            if user not in friends:
+                new_trip.friends.add(user)
+                new_trip.save()
+
+            mes = 'You have successfully created new trip.'
+            messages.success(request, mes)
+            return redirect('webapp:TripList')
+
+        return render(request, self.template_name, {'form': form})
+
+# Trip delete
+# trip/12/delete/
+class TripDeleteView(View):
+    template_name = 'webapp/tripDelete.html'
+
+    def get(self, request, pk):
+        trip = Trip.objects.get(pk=pk)
+        trip_participants = trip.friends.all()
+        if (pk in trip_participants) or (request.user.is_superuser):
+            return render(request, self.template_name, {'pk': pk, 'trip': trip})
+        else:
+            messages.error(request, 'You do not have the permission to view this page!')
+            return redirect('webapp:TripList')
+
+    def post(self, request, pk):
+        if (PersonalInformation.objects.get(user=request.user).pk == pk) or (request.user.is_superuser):
+            try:
+                u = User.objects.get(username = request.user)
+                u.delete()
+                messages.success(request, "The user was deleted")
+
+            except User.DoesNotExist:
+                messages.error(request, "User doesnot exist")
+                return render(request, 'webapp/login_form.html')
+
+            except Exception as e:
+                return render(request, 'webapp/login_form.html',{'err':e.message})
+
+            return render(request, 'webapp/login_form.html')
+        else:
+            messages.error(request, 'You do not have the permission to view this page!')
+            return redirect('webapp:MAIN')
+
+# View all logedin users trips
+# trip/
+class MyTripsView(View):
+    model = Trip
+    context_object_name = 'trips'
+    template_name = 'webapp/tripList.html'
+
+    def get(self, request):
+        trips = Trip.objects.filter(friends=self.request.user)
+        return render(request, self.template_name, {'trips': trips})
+
+# activate button
+# trip/12/activate/
+class tripActivateView(View):
+    def get(self, request, pk):
+        trips = Trip.objects.get(pk=pk)
+        if trips.is_active:
+            trips.is_active = False
+            trips.save()
+        else:
+            trips.is_active = True
+            trips.save()
+        return redirect('webapp:TripList')
+
+
+# Trip details
+# trip/12/
+class TripDetailsView(View):
+    form_class = CreateTripForm
+    model = Trip
+    template_name = 'webapp/tripDetails.html'
+
+    def get(self, request, pk):
+        trip = Trip.objects.get(pk=pk)
+        if (request.user in trip.friends.all()) or (request.user.is_superuser):
+            return render(request, self.template_name, {'trip': trip, 'pk': pk})
+        else:
+            messages.error(request, 'You do not have the permission to view this page!')
+            return redirect('webapp:TripList')
 
 
 def signin(request):

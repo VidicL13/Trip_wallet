@@ -110,3 +110,40 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+
+# create new trip
+class CreateTripForm(forms.ModelForm):
+    countries_queryset = Country.objects.all()
+    users_queryset = User.objects.all()
+
+    trip_name = forms.CharField(
+        widget = forms.TextInput(attrs={'placeholder': 'Trip name'}))
+
+    country = forms.ModelChoiceField(
+        queryset = countries_queryset,
+        initial = [],
+        widget = forms.Select(
+            attrs={
+                'class': 'select-multiple-country',
+                'multiple': 'multiple',
+                'style': 'color:rgb(160,160,160)',
+                'style': 'width: 100%'
+            }))
+
+    friends = forms.ModelChoiceField(
+        queryset = users_queryset,
+        initial = [],
+        widget = forms.Select(
+            attrs={
+                'class': 'select-multiple-user',
+                'multiple': 'multiple',
+                'style': 'color:rgb(160,160,160); width: 100%'
+
+            }))
+    description =  forms.CharField(
+        widget = forms.Textarea(attrs={'placeholder': 'Description'}))
+
+    class Meta:
+        model = Trip
+        fields = ['trip_name', 'country', 'friends', 'description']

@@ -1,0 +1,14 @@
+{% extends "webapp/head.html" %}
+{% block title %}My trips{% endblock %}
+{% block trip_active %}active{% endblock %}
+{% block trip_active_trip %}active{% endblock %}
+{% block content %}
+  <div class="container-fluid unique">
+      <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+              {% include 'webapp/messages.html' %}
+          </div>
+          {% include 'webapp/trip-template.html' %}
+      </div>
+  </div>
+{% endblock %}
