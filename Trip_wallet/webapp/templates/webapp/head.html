@@ -109,10 +109,12 @@
             </div>
         </div>
     </nav>
+
     {% block content %}
     {% endblock %}
-
-
+    {% if user.is_authenticated %}
+        <span class="small" style="color: rgba(80,80,80,0.7);position: absolute;top: 4rem;right: 16px;font-size: 10px;"> Signed in as: {{request.user}} </span>
+    {% endif %}
 </body>
 
 </html>

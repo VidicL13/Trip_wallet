@@ -8,7 +8,33 @@
           <div class="col-lg-8 offset-lg-2">
               {% include 'webapp/messages.html' %}
           </div>
-          {% include 'webapp/trip-template.html' %}
+          {% if trips %}
+              {% include 'webapp/trip-template.html' %}
+          {% else %}
+              <div class="col-lg-8 offset-lg-2">
+                  <div class="forma" style="margin-top: 30px">
+                      <div class="row">
+                          <div class="col-12 text-center">
+                              <h4>No trips yet =(</h4>
+                              <br>
+                              <h5>But worry not!</h5>
+                              <br>
+                              <h5>You can create a NEW TRIP by clicking the button below.</h5>
+                              <br>
+                              <br>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-4 offset-4">
+                              <a href="{% url 'webapp:TripCreate' %}" class="btn btn-outline-success btn-block" role="button" aria-disabled="true">
+                                  <span class="fa fa-road" aria-hidden="true"></span>&nbsp;
+                                  Create New trip
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          {% endif %}
       </div>
   </div>
 {% endblock %}

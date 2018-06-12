@@ -22,6 +22,7 @@ class WellcomeView(View):
     def get(self, request):
         return render(request, self.template_name)
 
+
 # create new user
 # register/
 class UserRegisterFormView(View):
@@ -129,6 +130,7 @@ class UserDetailsUpdateView(View):
             messages.error(request, 'You do not have the permission to view this page!')
             return redirect('webapp:MAIN')
 
+
 # Delete details view for user
 # details/12/delete
 class UserDetailsDeleteView(View):
@@ -138,7 +140,7 @@ class UserDetailsDeleteView(View):
             return render(request, self.template_name, {'pk': pk})
         else:
             messages.error(request, 'You do not have the permission to view this page!')
-            return redirect('webapp:MAIN')
+            return redirect('webapp:TripList')
     def post(self, request, pk):
         if (PersonalInformation.objects.get(user=request.user).pk == pk) or (request.user.is_superuser):
             try:
@@ -156,7 +158,7 @@ class UserDetailsDeleteView(View):
             return render(request, 'webapp/login_form.html')
         else:
             messages.error(request, 'You do not have the permission to view this page!')
-            return redirect('webapp:MAIN')
+            return redirect('webapp:TripList')
 
 
 # User details
@@ -172,7 +174,7 @@ class UserDetailsView(View):
             return render(request, self.template_name, {'PersInfo': PersInfo, 'pk': pk})
         else:
             messages.error(request, 'You do not have the permission to view this page!')
-            return redirect('webapp:MAIN')
+            return redirect('webapp:TripList')
 
 
 # Reset password
@@ -340,30 +342,32 @@ class TripDeleteView(View):
     def get(self, request, pk):
         trip = Trip.objects.get(pk=pk)
         trip_participants = trip.friends.all()
-        if (pk in trip_participants) or (request.user.is_superuser):
+        if (request.user in trip_participants) or (request.user.is_superuser):
             return render(request, self.template_name, {'pk': pk, 'trip': trip})
         else:
             messages.error(request, 'You do not have the permission to view this page!')
             return redirect('webapp:TripList')
 
     def post(self, request, pk):
-        if (PersonalInformation.objects.get(user=request.user).pk == pk) or (request.user.is_superuser):
+        trip = Trip.objects.get(pk=pk)
+        trip_participants = trip.friends.all()
+        if (request.user in trip_participants) or (request.user.is_superuser):
             try:
-                u = User.objects.get(username = request.user)
+                u = Trip.objects.get(pk=pk)
                 u.delete()
-                messages.success(request, "The user was deleted")
+                messages.success(request, "The Trip was deleted")
 
             except User.DoesNotExist:
-                messages.error(request, "User doesnot exist")
-                return render(request, 'webapp/login_form.html')
+                messages.error(request, "Trip doesn't exist")
+                return redirect('webapp:TripList')
 
             except Exception as e:
-                return render(request, 'webapp/login_form.html',{'err':e.message})
+                return redirect('webapp:TripList')
 
-            return render(request, 'webapp/login_form.html')
+            return redirect('webapp:TripList')
         else:
-            messages.error(request, 'You do not have the permission to view this page!')
-            return redirect('webapp:MAIN')
+            messages.error(request, "You don't have the permission to view this page!")
+            return redirect('webapp:TripList')
 
 
 # View all logedin users trips
