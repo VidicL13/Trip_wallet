@@ -21,7 +21,7 @@ class PersonalInformation(models.Model):
     user_type = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 
 class ExchangeRate(models.Model):

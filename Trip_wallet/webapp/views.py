@@ -96,7 +96,7 @@ class UserDetailsUpdateView(View):
 
     def post(self, request, pk):
         if (self.model_personal.objects.get(user=request.user).pk == pk) or (request.user.is_superuser):
-            form_personal = self.form_personal_class(request.POST)
+            form_personal = self.form_personal_class(request.POST, request.FILES)
             form_user = self.form_user_class(request.POST)
             if form_user.is_valid() and form_personal.is_valid():
                 instance_personal = self.model_personal.objects.get(id=pk)
@@ -168,7 +168,7 @@ class UserDetailsView(View):
 
     def get(self, request, pk):
         if (PersonalInformation.objects.get(user=request.user).pk == pk) or (request.user.is_superuser):
-            PersInfo = PersonalInformation.objects.get(user=request.user)
+            PersInfo = PersonalInformation.objects.get(pk=pk)
             return render(request, self.template_name, {'PersInfo': PersInfo, 'pk': pk})
         else:
             messages.error(request, 'You do not have the permission to view this page!')
