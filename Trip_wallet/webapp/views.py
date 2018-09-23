@@ -22,7 +22,44 @@ class WellcomeView(View):
     def get(self, request):
         return render(request, self.template_name)
 
+#new transaction for trip
 
+class TripNewPurchaseTransactionView(View):
+    form_class = CreateTripForm
+    model = Trip
+    template_name = 'webapp/tripAddPurchaseTransaction.html'
+
+    # display a new form
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            country = dict(request.POST)['country']
+            friends = dict(request.POST)['friends']
+            new_trip = self.model.objects.create(
+                trip_name = request.POST['trip_name'],
+                description = request.POST['description'],
+                is_active = True)
+            for user in friends:
+                new_trip.friends.add(user)
+                new_trip.save()
+            for visited in country:
+                new_trip.country.add(visited)
+                new_trip.save()
+            # add creator if he wasn't there
+            user = User.objects.get(username=self.request.user).pk
+            if user not in friends:
+                new_trip.friends.add(user)
+                new_trip.save()
+
+            mes = 'You have successfully created new trip.'
+            messages.success(request, mes)
+            return redirect('webapp:TripList')
+
+        return render(request, self.template_name, {'form': form})
 # create new user
 # register/
 class UserRegisterFormView(View):

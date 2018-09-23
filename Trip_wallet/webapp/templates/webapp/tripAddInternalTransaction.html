@@ -1,0 +1,40 @@
+{% extends 'webapp/head.html' %}
+{% block title %}Create New Trip{% endblock %}
+{% block trip_active %}active{% endblock %}
+{% block trip_active_new %}active{% endblock %}
+{% block content %}
+  <div class="container-fluid unique">
+        <div class="row">
+            <div class="col-lg-6 offset-3">
+                {% include 'webapp/messages.html' %}
+                <div class="forma" style="margin-top: 30px">
+                    <form class="form-horisontal" action="" method="post">
+                      <h4 style="margin-bottom: 20px">Travel information</h4>
+                      <div class="form-group">
+                          {% csrf_token %}
+                          {% include 'webapp/form-template.html' %}
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-4 offset-4">
+                              <button class="btn btn-outline-success btn-block" type="submit">Create New Trip</button>
+                          </div>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    select-multiple
+    <script>
+        $(document).ready(function() {
+            $('.select-multiple-user').select2({
+              placeholder: 'Search by name or lastname',
+              allowClear: true
+            }).select2('val', []);
+            $('.select-multiple-country').select2({
+              placeholder: 'You can select multiple countries',
+              allowClear: true
+            }).select2('val', []);
+        });
+    </script>
+{% endblock %}
