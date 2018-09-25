@@ -60,9 +60,9 @@
                         Add user
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                          <a class="dropdown-item {% block new_real_user_active %}{% endblock %}" href="#">New User</a>
-                          <a class="dropdown-item {% block new_fake_user_active %}{% endblock %}" href="#">Fake User</a>
-                          <a class="dropdown-item {% block new_donator_user_active %}{% endblock %}" href="#">Donator</a>
+                          <a class="dropdown-item {% block new_real_user_active %}{% endblock %}" href="{% url 'webapp:Add new user' %}">New User</a>
+                          <a class="dropdown-item {% block new_fake_user_active %}{% endblock %}" href="{% url 'webapp:Add dummy user' %}">Fake User</a>
+                          <a class="dropdown-item {% block new_donator_user_active %}{% endblock %}" href="{% url 'webapp:Add donator' %}">Donator</a>
                       </div>
                   </li>
 
