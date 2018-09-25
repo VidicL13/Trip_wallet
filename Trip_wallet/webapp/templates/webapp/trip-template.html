@@ -59,8 +59,8 @@
 						  </button>
 						  <ul class="dropdown-menu">
 							<li><a href="{% url 'webapp:TripNewPurchaseTransaction' trip.pk %}" class="dropdown-item" href="#">Purchase</a></li>
-							<li><a class="dropdown-item" href="#">Donation</a></li>
-							<li><a class="dropdown-item" href="#">Internal Transaction</a></li>
+							<li><a href="{% url 'webapp:TripNewDonationTransaction' trip.pk %}" class="dropdown-item" href="#">Donation</a></li>
+							<li><a href="{% url 'webapp:TripNewInternalTransaction' trip.pk %}" class="dropdown-item" href="#">Internal Transaction</a></li>
 						  </ul>
 						</div> 
                     </div>

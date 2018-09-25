@@ -55,6 +55,14 @@ urlpatterns = [
     # trip/12/
     path('trip/<int:pk>/addPurchaseTransaction/', login_required(views.TripNewPurchaseTransactionView.as_view()), name = 'TripNewPurchaseTransaction'),
 
+    # Trip addNewDonationTransaction
+    # trip/12/
+    path('trip/<int:pk>/addDonationTransaction/', login_required(views.TripNewDonationTransactionView.as_view()), name = 'TripNewDonationTransaction'),
+
+    # Trip addNewInternalTransaction
+    # trip/12/
+    path('trip/<int:pk>/addInternalTransaction/', login_required(views.TripNewInternalTransactionView.as_view()), name = 'TripNewInternalTransaction'),
+
     # Trip details update
     # trip/12/update/
     path('trip/<int:pk>/update/', login_required(views.TripCreateView.as_view()), name = 'TripDetailsUpdate'),

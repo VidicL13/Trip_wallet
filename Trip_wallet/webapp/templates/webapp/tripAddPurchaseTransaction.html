@@ -9,14 +9,14 @@
                 {% include 'webapp/messages.html' %}
                 <div class="forma" style="margin-top: 30px">
                     <form class="form-horisontal" action="" method="post">
-                      <h4 style="margin-bottom: 20px">Travel information</h4>
+                      <h4 style="margin-bottom: 20px">New Purchase Transaction</h4>
                       <div class="form-group">
                           {% csrf_token %}
                           {% include 'webapp/form-template.html' %}
                       </div>
                       <div class="row">
                           <div class="col-lg-4 offset-4">
-                              <button class="btn btn-outline-success btn-block" type="submit">Create New Trip</button>
+                              <button class="btn btn-outline-success btn-block" type="submit">Save</button>
                           </div>
                       </div>
                     </form>

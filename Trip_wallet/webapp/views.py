@@ -22,30 +22,34 @@ class WellcomeView(View):
     def get(self, request):
         return render(request, self.template_name)
 
-#new transaction for trip
-
-class TripNewPurchaseTransactionView(View):
-    form_class = CreateTripForm
+#new internal transaction for trip
+class TripNewInternalTransactionView(View):
+    form_class = CreateTripNewInternalTransaction
     model = Trip
-    template_name = 'webapp/tripAddPurchaseTransaction.html'
+    template_name = 'webapp/tripAddInternalTransaction.html'
 
     # display a new form
-    def get(self, request):
+    def get(self, request,pk):
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
+            payer=dict(request.POST)['payer']
             country = dict(request.POST)['country']
             friends = dict(request.POST)['friends']
             new_trip = self.model.objects.create(
                 trip_name = request.POST['trip_name'],
                 description = request.POST['description'],
                 is_active = True)
-            for user in friends:
-                new_trip.friends.add(user)
+            #for user in friends:
+             #   new_trip.friends.add(user)
+             #   new_trip.save()
+            for user in payer:
+                new_trip.payer.add(user)
                 new_trip.save()
+
             for visited in country:
                 new_trip.country.add(visited)
                 new_trip.save()
@@ -56,6 +60,100 @@ class TripNewPurchaseTransactionView(View):
                 new_trip.save()
 
             mes = 'You have successfully created new trip.'
+            messages.success(request, mes)
+            return redirect('webapp:TripList')
+
+        return render(request, self.template_name, {'form': form})
+
+#new donation transaction for trip
+class TripNewDonationTransactionView(View):
+    form_class = CreateTripNewDonationTransaction
+    model = Trip
+    template_name = 'webapp/tripAddDonationTransaction.html'
+
+    # display a new form
+    def get(self, request,pk):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            payer=dict(request.POST)['payer']
+            country = dict(request.POST)['country']
+            friends = dict(request.POST)['friends']
+            new_trip = self.model.objects.create(
+                trip_name = request.POST['trip_name'],
+                description = request.POST['description'],
+                is_active = True)
+            #for user in friends:
+             #   new_trip.friends.add(user)
+             #   new_trip.save()
+            for user in payer:
+                new_trip.payer.add(user)
+                new_trip.save()
+
+            for visited in country:
+                new_trip.country.add(visited)
+                new_trip.save()
+            # add creator if he wasn't there
+            user = User.objects.get(username=self.request.user).pk
+            if user not in friends:
+                new_trip.friends.add(user)
+                new_trip.save()
+
+            mes = 'You have successfully created new trip.'
+            messages.success(request, mes)
+            return redirect('webapp:TripList')
+
+        return render(request, self.template_name, {'form': form})
+
+#new purchase transaction for trip
+class TripNewPurchaseTransactionView(View):
+    form_class = CreateTripNewPurchaseTransaction
+    model = Trip
+    template_name = 'webapp/tripAddPurchaseTransaction.html'
+
+    # display a new form
+    def get(self, request,pk):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, pk):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+
+            # pridobimo parametre iz POST zahtevka
+            payer=None
+            payer_id=int(request.POST['payer'])
+            cost = list(dict(request.POST)['cost'])[0]
+            involved = dict(request.POST)['involved']
+            receiver = dict(request.POST)['receiver']
+            note = dict(request.POST)['note']
+
+
+            try:
+                #poiščemo User objekt, ki se nahaja pod payer_id
+                payer = User.objects.get(id=payer_id)
+            except  User.DoesNotExist:
+                pass
+
+            # skreirajmo novo vrstico v tabeli Transaction
+
+            transaction = Transaction.objects.create(
+                value = cost,
+
+                # !!!!!!!! PROBLEM POIZROČA TO POLJE, KI ZAHTEVA OBJEKT USER !!!!!!!!!!!
+                # JAVI NAPAKO: UNIQUE constraint failed: webapp_transaction.user_payed_id
+                user_payed = payer,
+
+                receiver = receiver,
+                comment = note
+            )
+            # shranimo novo vrstico
+            # transaction.save()
+
+            mes = 'You have successfully saved your transaction.'
             messages.success(request, mes)
             return redirect('webapp:TripList')
 

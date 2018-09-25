@@ -147,3 +147,107 @@ class CreateTripForm(forms.ModelForm):
     class Meta:
         model = Trip
         fields = ['trip_name', 'country', 'friends', 'description']
+
+
+class CreateTripNewPurchaseTransaction(forms.ModelForm):
+    countries_queryset = Country.objects.all()
+    users_queryset = User.objects.all()
+
+    payer = forms.ModelChoiceField(
+        queryset = users_queryset,
+        initial = [],
+        widget = forms.Select(
+            attrs={
+                'class': 'select-multiple-user',
+                'style': 'color:rgb(160,160,160); width: 100%'
+
+            }))
+
+    cost = forms.DecimalField(
+        min_value=0
+    )
+
+    involved = forms.ModelChoiceField(
+        queryset = users_queryset,
+        initial = [],
+        widget = forms.Select(
+            attrs={
+                'class': 'select-multiple-user',
+                'multiple': 'multiple',
+                'style': 'color:rgb(160,160,160); width: 100%'
+
+            }))
+
+    receiver = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Receiver'}))
+
+    note = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Note'}))
+
+
+    class Meta:
+        model = Trip
+        fields = ['payer', 'cost', 'involved', 'receiver', 'note']
+
+
+class CreateTripNewDonationTransaction(forms.ModelForm):
+    countries_queryset = Country.objects.all()
+    users_queryset = User.objects.all()
+
+    receiver = forms.ModelChoiceField(
+        queryset=users_queryset,
+        initial=[],
+        widget=forms.Select(
+            attrs={
+                'class': 'select-multiple-user',
+                'style': 'color:rgb(160,160,160); width: 100%'
+
+            }))
+
+    donator = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Donator'}))
+
+    cost = forms.DecimalField(
+        min_value=0
+    )
+
+    note = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Note'}))
+
+
+    class Meta:
+        model = Trip
+        fields = ['receiver', 'donator', 'cost', 'note']
+
+
+class CreateTripNewInternalTransaction(forms.ModelForm):
+    countries_queryset = Country.objects.all()
+    users_queryset = User.objects.all()
+
+    payer = forms.ModelChoiceField(
+        queryset = users_queryset,
+        initial = [],
+        widget = forms.Select(
+            attrs={
+                'class': 'select-multiple-user',
+                'style': 'color:rgb(160,160,160); width: 100%'
+
+            }))
+
+    cost = forms.DecimalField(
+        min_value=0
+    )
+
+    receiver = forms.ModelChoiceField(
+        queryset = users_queryset,
+        initial = [],
+        widget = forms.Select(
+            attrs={
+                'class': 'select-multiple-user',
+                'style': 'color:rgb(160,160,160); width: 100%'
+            }))
+
+
+    class Meta:
+        model = Trip
+        fields = ['payer', 'cost', 'receiver']
