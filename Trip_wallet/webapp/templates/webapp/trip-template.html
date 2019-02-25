@@ -50,22 +50,25 @@
                       </a>
                     </div>
                 </div>
-				<div class="row" style="margin-top:5px;">
+				        <div class="row" style="margin-top:5px;">
                     <div class="col-6">
-					   <div class="dropdown">
-						  <button class="btn btn-outline-success btn-block dropdown-toggle" role="button" data-toggle="dropdown" aria-disabled="true">
-							<span class="fa fa-usd" aria-hidden="true"></span>&nbsp;
-								New Transaction
-						  </button>
-						  <ul class="dropdown-menu">
-							<li><a href="{% url 'webapp:TripNewPurchaseTransaction' trip.pk %}" class="dropdown-item" href="#">Purchase</a></li>
-							<li><a href="{% url 'webapp:TripNewDonationTransaction' trip.pk %}" class="dropdown-item" href="#">Donation</a></li>
-							<li><a href="{% url 'webapp:TripNewInternalTransaction' trip.pk %}" class="dropdown-item" href="#">Internal Transaction</a></li>
-						  </ul>
-						</div> 
+                      <a href="{% url 'webapp:TripNewPurchaseTransaction' trip.pk %}" class="btn btn-outline-success btn-block" role="button" aria-disabled="true">
+                          <span class="fa fa-usd" aria-hidden="true"></span>&nbsp;
+                          New Transaction
+                      </a>
+            					   <!-- <div class="dropdown">
+              						  <button class="btn btn-outline-success btn-block dropdown-toggle" role="button" data-toggle="dropdown" aria-disabled="true">
+              							         <span class="fa fa-usd" aria-hidden="true"></span>&nbsp;
+              								       New Transaction
+              						  </button>
+              						  <ul class="dropdown-menu">
+              							         <li><a href="{% url 'webapp:TripNewPurchaseTransaction' trip.pk %}" class="dropdown-item" href="#">Purchase</a></li>
+                                     <li><a href="{% url 'webapp:TripNewDonationTransaction' trip.pk %}" class="dropdown-item" href="#">Donation</a></li>
+              							         <li><a href="{% url 'webapp:TripNewInternalTransaction' trip.pk %}" class="dropdown-item" href="#">Internal Transaction</a></li>
+              						  </ul>
+            						</div>  -->
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

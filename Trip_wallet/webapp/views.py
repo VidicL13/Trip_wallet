@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.db.models import Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
@@ -29,7 +30,7 @@ class TripNewInternalTransactionView(View):
     template_name = 'webapp/tripAddInternalTransaction.html'
 
     # display a new form
-    def get(self, request,pk):
+    def get(self, request, pk):
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form})
 
@@ -115,43 +116,42 @@ class TripNewPurchaseTransactionView(View):
     template_name = 'webapp/tripAddPurchaseTransaction.html'
 
     # display a new form
-    def get(self, request,pk):
+    def get(self, request, pk):
         form = self.form_class(None)
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, pk):
         form = self.form_class(request.POST)
         if form.is_valid():
-
             # pridobimo parametre iz POST zahtevka
-            payer=None
-            payer_id=int(request.POST['payer'])
+            payer = None
+            payer_id = int(request.POST['payer'])
             cost = list(dict(request.POST)['cost'])[0]
             involved = dict(request.POST)['involved']
             receiver = dict(request.POST)['receiver']
             note = dict(request.POST)['note']
-
-
+            trip = None
             try:
-                #poiščemo User objekt, ki se nahaja pod payer_id
+                # poiščemo User objekt, ki se nahaja pod payer_id
                 payer = User.objects.get(id=payer_id)
             except  User.DoesNotExist:
                 pass
 
-            # skreirajmo novo vrstico v tabeli Transaction
+            trip = Trip.objects.get(id=pk)
 
+            # skreirajmo novo vrstico v tabeli Transaction
             transaction = Transaction.objects.create(
                 value = cost,
-
-                # !!!!!!!! PROBLEM POIZROČA TO POLJE, KI ZAHTEVA OBJEKT USER !!!!!!!!!!!
-                # JAVI NAPAKO: UNIQUE constraint failed: webapp_transaction.user_payed_id
                 user_payed = payer,
-
                 receiver = receiver,
-                comment = note
+                trip = trip,
+                comment = note,
+                type = 'Purchase'
             )
+            transaction.involved.set(involved)
+
             # shranimo novo vrstico
-            # transaction.save()
+            transaction.save()
 
             mes = 'You have successfully saved your transaction.'
             messages.success(request, mes)
@@ -540,8 +540,11 @@ class TripDetailsView(View):
 
     def get(self, request, pk):
         trip = Trip.objects.get(pk=pk)
+        transactions = Transaction.objects.filter(trip = pk)
+        transactions_10 = transactions[:10]
+        total = transactions.aggregate(total = Sum('value'))['total']
         if (request.user in trip.friends.all()) or (request.user.is_superuser):
-            return render(request, self.template_name, {'trip': trip, 'pk': pk})
+            return render(request, self.template_name, {'trip': trip, 'pk': pk, 'transactions_10': transactions_10, 'total':total})
         else:
             messages.error(request, 'You do not have the permission to view this page!')
             return redirect('webapp:TripList')

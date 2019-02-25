@@ -28,25 +28,6 @@ class ExchangeRate(models.Model):
     currancy = models.CharField(max_length=30, blank=True)
     value = models.FloatField(blank=True)
 
-class Transaction(models.Model):
-    time_stamp = models.DateTimeField(auto_now_add=True)
-    value = models.FloatField(blank=True)
-    user_payed = models.OneToOneField(User, related_name='user_payed', on_delete=models.PROTECT)
-    user_recieved = models.OneToOneField(User, related_name='user_recieved', on_delete=models.PROTECT, null=True, blank=True)
-    type = models.CharField(max_length=30)
-    image = models.ImageField(blank=True, null=True)
-    receiver = models.CharField(max_length=250)
-    comment = models.CharField(max_length=1000, blank=True, null=True)
-
-class TransactionInvolvment(models.Model):
-    transaction = models.ManyToManyField(Transaction, related_name='transaction_involvment')
-    user = models.ManyToManyField(User, related_name='user_involvment')
-    weight = models.FloatField(blank=False, null=False)
-
-class TransactionLabels(models.Model):
-    transaction = models.ManyToManyField(Transaction, related_name='transaction_label')
-    label = models.CharField(max_length=100)
-
 class Country(models.Model):
     country = models.CharField(max_length=250)
 
@@ -63,3 +44,24 @@ class Trip(models.Model):
 
     def __str__(self):
         return self.trip_name
+
+class Transaction(models.Model):
+    time_stamp = models.DateTimeField(auto_now_add=True)
+    value = models.FloatField(blank=True)
+    user_payed = models.ForeignKey(User, related_name='user_payed', on_delete=models.PROTECT)
+    user_recieved = models.ForeignKey(User, related_name='user_recieved', on_delete=models.PROTECT, null=True, blank=True)
+    type = models.CharField(max_length=30)
+    image = models.ImageField(blank=True, null=True)
+    receiver = models.CharField(max_length=250)
+    comment = models.CharField(max_length=1000, blank=True, null=True)
+    trip = models.ForeignKey(Trip, related_name='Trip', on_delete=models.PROTECT)
+    involved = models.ManyToManyField(User, related_name='involved')
+
+class TransactionInvolvment(models.Model):
+    transaction = models.ManyToManyField(Transaction, related_name='transaction_involvment')
+    user = models.ManyToManyField(User, related_name='user_involvment')
+    weight = models.FloatField(blank=False, null=False)
+
+class TransactionLabels(models.Model):
+    transaction = models.ManyToManyField(Transaction, related_name='transaction_label')
+    label = models.CharField(max_length=100)

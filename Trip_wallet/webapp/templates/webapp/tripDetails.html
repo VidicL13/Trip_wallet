@@ -14,7 +14,7 @@
                               <h4 style="margin-bottom: 30px">{{trip.trip_name}}</h4>
                               <h6 style="margin-bottom: 15px">
                                   {% for c in trip.country.all %}
-                                      - {{c}}
+                                      {{c}} //
                                   {% endfor %}
                               </h6>
                               <h6 style="margin-bottom: 15px">{{trip.description}}</h6>
@@ -23,13 +23,31 @@
                               <h4 style="margin-bottom: 30px;margin-top: 50px">Fellow travellers</h4>
                               <h6 style="margin-bottom: 15px">
                                 {% for c in trip.friends.all %}
-                                    - {{c}}
+                                    {{c}} //
                                 {% endfor %}
                               </h6>
                           </div>
                       </div>
                       <div class="col-7">
-                          <p>Here we will have some specs about the trip</p>
+                          <h4 style="margin-bottom: 30px;margin-top: 50px">Transactions </h4>
+
+                          <table border=1 frame=void rules=rows style="width:100%">
+                              <tr>
+                                  <th>Time</th>
+                                  <th>Value</th>
+                                  <th>Payer</th>
+                              </tr>
+                              {% for trans in transactions_10 %}
+                              <tr>
+                                  <td>{{ trans.time_stamp }}</td>
+                                  <td>{{ trans.value }} </td>
+                                  <td>{{ trans.user_payed }}</td>
+                              </tr>
+                              {% endfor %}
+                          </table>
+                          <br>
+                          <br>
+                          <p> <b>Total cost:  </b> {{ total }} € </p>
                       </div>
                   </div>
               </div>
