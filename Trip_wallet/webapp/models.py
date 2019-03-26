@@ -24,9 +24,9 @@ class PersonalInformation(models.Model):
         return self.user.username
 
 
-class ExchangeRate(models.Model):
-    currancy = models.CharField(max_length=30, blank=True)
-    value = models.FloatField(blank=True)
+# class ExchangeRate(models.Model):
+#     currancy = models.CharField(max_length=30, blank=True)
+#     value = models.FloatField(blank=True)
 
 class Country(models.Model):
     country = models.CharField(max_length=250)
@@ -57,11 +57,11 @@ class Transaction(models.Model):
     trip = models.ForeignKey(Trip, related_name='Trip', on_delete=models.PROTECT)
     involved = models.ManyToManyField(User, related_name='involved')
 
-class TransactionInvolvment(models.Model):
-    transaction = models.ManyToManyField(Transaction, related_name='transaction_involvment')
-    user = models.ManyToManyField(User, related_name='user_involvment')
-    weight = models.FloatField(blank=False, null=False)
-
-class TransactionLabels(models.Model):
-    transaction = models.ManyToManyField(Transaction, related_name='transaction_label')
-    label = models.CharField(max_length=100)
+# class TransactionInvolvment(models.Model):
+#     transaction = models.ManyToManyField(Transaction, related_name='transaction_involvment')
+#     user = models.ManyToManyField(User, related_name='user_involvment')
+#     weight = models.FloatField(blank=False, null=False)
+#
+# class TransactionLabels(models.Model):
+#     transaction = models.ManyToManyField(Transaction, related_name='transaction_label')
+#     label = models.CharField(max_length=100)
